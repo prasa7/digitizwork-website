@@ -28,6 +28,11 @@ Rules for every image: no text, letters, logos or watermarks in the image; no re
 | aboutTeamNetwork | `/images/about/team-network.svg` | 1120 x 920 (~6:5) | /about hero |
 | consultantPlaceholder | `/images/team/avatar-placeholder.svg` | 800 x 800 (1:1) | Fallback for consultants without a photo |
 | (per consultant) `photo` in `consultants.ts` | `/images/team/<firstname-lastname>.webp` | 800 x 800 minimum (1:1) | /about consultant cards: **real photos only, supplied by the consultant** |
+| clientsHero | `/images/clients/clients-hero.svg` | 1120 x 920 (~6:5) | /clients hero (DIG-59) |
+| testimonialsHero | `/images/testimonials/testimonials-hero.svg` | 1120 x 920 (~6:5) | /testimonials hero (DIG-60) |
+| clientLogoPlaceholder | `/images/clients/logo-placeholder.svg` | 240 x 96 (5:2) | Stand-in for client logos (DIG-59). Keep as a neutral SVG; do not generate. |
+| (per client) `logo` in `clients.ts` | `/images/clients/<client-slug>.svg` (or transparent PNG/WebP) | about 240 x 96 | **Real logos only, supplied by the client with permission to display** |
+| (per testimonial) `photo` in `testimonials.ts` | `/images/testimonials/<firstname-lastname>.webp` | 160 x 160 minimum (1:1) | **Real photos only, supplied by the person with written consent** |
 
 ## Prompts
 
@@ -62,3 +67,11 @@ Rules for every image: no text, letters, logos or watermarks in the image; no re
 > A minimal neutral silhouette of a person's head and shoulders, softly lit, on a deep navy to indigo gradient background with a faint glow, used as a placeholder avatar, no face details, [shared style suffix]
 
 Consultant photos must be **real photographs of the actual consultants**, provided with their consent. Do not generate AI faces for real people. Suggested brief for a photographer: head and shoulders, square crop, plain dark or softly blurred office background, even soft light, consistent framing across the team.
+
+### clientsHero (/clients hero, DIG-59)
+> Six floating translucent glass tiles arranged in a hexagon around a radiant central orb, each tile holding a different simple abstract geometric emblem (circle, rounded square, triangle, hexagon, diamond, overlapping rings) and blank bars instead of text, fine curved light lines connecting every tile to the core, representing many different organisations connected to one partner, no real company logos or brand marks, isometric-leaning 3D render, [shared style suffix]
+
+### testimonialsHero (/testimonials hero, DIG-60)
+> Three layered translucent glass quote cards floating at different depths, each with a glowing gradient quotation-mark tile, blank abstract text lines and a small faceless silhouette avatar, plus a small chat bubble with three glowing typing dots, warm and trustworthy mood, no readable text, no star ratings, no real faces, 3D render, [shared style suffix]
+
+Client logos and testimonial photos must be **real assets supplied by the client or person**, with permission to publish. Never generate logos, faces or ratings for them.

@@ -66,4 +66,25 @@ export const images = {
     width: 400,
     height: 400,
   },
+  // /clients hero (DIG-59)
+  clientsHero: {
+    src: "/images/clients/clients-hero.svg",
+    alt: "Illustration of six abstract organisation tiles connected to a glowing central core.",
+    width: 560,
+    height: 460,
+  },
+  // /testimonials hero (DIG-60)
+  testimonialsHero: {
+    src: "/images/testimonials/testimonials-hero.svg",
+    alt: "Illustration of layered quote cards with abstract text lines and faceless avatars.",
+    width: 560,
+    height: 460,
+  },
+  // Neutral stand-in for client logos (DIG-59). Decorative: the client name is shown as text.
+  clientLogoPlaceholder: {
+    src: "/images/clients/logo-placeholder.svg",
+    alt: "",
+    width: 240,
+    height: 96,
+  },
 } satisfies Record<string, ImageAsset>;

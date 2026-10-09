@@ -80,6 +80,9 @@ Ratios computed with the WCAG relative luminance formula. AA requires 4.5:1 for 
 | danger-700 on white | 6.57 | Error text | Pass AA |
 | success-700 on white | 5.69 | Success text | Pass AA |
 | ink-400 border on white | 3.45 | Form field borders (1.4.11) | Pass |
+| iris-600 filled star on white | 5.67 | Testimonial rating stars, non-text (DIG-60) | Pass |
+| ink-400 empty star on white | 3.45 | Unfilled rating stars, non-text (DIG-60); the rating is also exposed as "Rated N out of 5" | Pass |
+| ink-600 on ink-50 | 7.18 | "Some of our clients" label in the home teaser | Pass AAA |
 | brand-500 focus ring on white | 5.06 | Focus indicator on light | Pass |
 | brand-500 focus ring on ink-50 | 4.79 | Focus indicator on muted | Pass |
 | brand-300 focus ring on ink-950 | 8.75 | Focus indicator on dark (`.surface-dark`) | Pass |
@@ -117,7 +120,7 @@ Headings use `text-wrap: balance`, paragraphs `text-wrap: pretty`.
 - Section rhythm: `py-20` (80px) mobile, `py-24` from 640px, `py-32` (128px) from 1024px.
 - Anchored sections get `scroll-margin-top: 5.5rem` to clear the sticky header.
 - Breakpoints (Tailwind defaults): sm 640, md 768, lg 1024, xl 1280. Desktop navigation from lg; below that the mobile menu.
-- Grids: services 1 / 2 / 3 columns; features 1 / 2 / 3; process 1 / 2 / 4; consultants 1 / 2 / 4.
+- Grids: services 1 / 2 / 3 columns; features 1 / 2 / 3; process 1 / 2 / 4; consultants 1 / 2 / 4; clients 2 / 3 (md); case studies 1 / 2 (md); testimonials 1 / 2 (md) / 3 (lg).
 - Verified without horizontal scroll at 360, 390, 768, 1024, 1280 and 1440px.
 
 ## 5. Radius, elevation, effects
@@ -152,13 +155,16 @@ Headings use `text-wrap: balance`, paragraphs `text-wrap: pretty`.
 | SectionHeader | `src/components/ui/SectionHeader.tsx` | Eyebrow, status tag, H2 (or H1 via `as`), intro |
 | ButtonLink / buttonClasses | `src/components/ui/Button.tsx` | Variants primary (AI gradient), secondary, ghost-dark, light; sizes sm / md / lg |
 | SmartLink | `src/components/ui/SmartLink.tsx` | Renders a content `NavLink` (section anchor, route, external, pending) |
-| Icon | `src/components/ui/Icon.tsx` | 19 icons |
+| Icon | `src/components/ui/Icon.tsx` | 22 icons (adds quote, building, external for DIG-59/60) |
 | ImageSlot | `src/components/ui/ImageSlot.tsx` | next/image wrapper for `ImageAsset` |
 | StatusTag | `src/components/ui/StatusTag.tsx` | Dashed "Placeholder" / "Optional" pill |
 | Wordmark | `src/components/ui/Wordmark.tsx` | Proposed mark and wordmark |
 | SkipLink, PreviewBanner, Header, DesktopNav, MobileMenu, Footer | `src/components/layout/` | Page shell |
 | Hero, Services + ServiceCard, Approach, WhyUs + FeatureGrid, AboutTeaser, Contact + ContactForm | `src/components/sections/` | Home sections |
-| PageHero, Story, Team + ConsultantCard, CtaBand | `src/components/sections/` | /about sections |
+| PageHero, Story, Team + ConsultantCard, CtaBand | `src/components/sections/` | /about sections (Story is reused on /clients) |
+| ClientList + ClientCard, CaseStudies + CaseStudyCard | `src/components/sections/` | /clients (DIG-59) |
+| Testimonials + TestimonialCard, FeedbackPrompt | `src/components/sections/` | /testimonials (DIG-60) |
+| TrustedTeaser | `src/components/sections/` | Home teaser for /clients and /testimonials (reuses ClientCard compact and TestimonialCard) |
 
 Behaviour and Phase 2 guidance: [components.md](components.md).
 

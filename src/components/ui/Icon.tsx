@@ -108,6 +108,26 @@ const paths: Record<IconName, ReactNode> = {
       <path d="M8 10.5V16M8 7.5v.01M11.5 16v-5.5M11.5 13c0-1.7 1-2.7 2.4-2.7 1.4 0 2.1 1 2.1 2.7V16" />
     </>
   ),
+  quote: (
+    <>
+      <path d="M4 18v-5.5C4 8.5 6 6 9.5 5.5M4 12.5h4.5V18H4" />
+      <path d="M13.5 18v-5.5c0-4 2-6.5 5.5-7M13.5 12.5H18V18h-4.5" />
+    </>
+  ),
+  building: (
+    <>
+      <rect x="4" y="3" width="11" height="18" rx="1.5" />
+      <path d="M15 9h3.5A1.5 1.5 0 0 1 20 10.5V21H2" />
+      <path d="M8 7h3M8 11h3M8 15h3" />
+    </>
+  ),
+  external: (
+    <>
+      <path d="M14 4h6v6" />
+      <path d="m20 4-9 9" />
+      <path d="M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" />
+    </>
+  ),
 };
 
 interface IconProps {

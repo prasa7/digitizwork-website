@@ -48,7 +48,7 @@ rows = [
     ("step", ("3", "If the current text is fine, set 'Action' to 'Approve current text'. To delete an item, choose 'Remove'.")),
     ("step", ("4", "Leave 'Action' empty (or 'Keep as is') for anything you have not decided yet.")),
     ("step", ("5", "Use 'Notes for Claude' for instructions, e.g. 'make this shorter' or 'add a 7th service like this one'.")),
-    ("step", ("6", "Fill in the 'Consultants', 'Discovery questions' and 'Images' tabs where you can.")),
+    ("step", ("6", "Fill in the 'Consultants', 'Clients', 'Case studies', 'Testimonials', 'Discovery questions' and 'Images' tabs where you can.")),
     ("step", ("7", "Add a line to 'Change log' each time you send the sheet back, then send the file to Claude.")),
     ("blank", ""),
     ("head", "Colour legend"),
@@ -171,6 +171,8 @@ site_entries = [
     ("nav.approach", "Navigation", "Menu item", "Label", "How we work", "Remove if the section is removed."),
     ("nav.whyUs", "Navigation", "Menu item", "Label", "Why us", "1-2 words."),
     ("nav.about", "Navigation", "Menu item", "Label", "About", "1-2 words."),
+    ("nav.clients", "Navigation", "Menu item", "Label", "Clients", "1-2 words."),
+    ("nav.feedback", "Navigation", "Menu item", "Label", "Feedback", "1-2 words."),
     ("nav.contact", "Navigation", "Menu item", "Label", "Contact", "1-2 words."),
     ("footer.legalLine", "Footer", "", "Copyright line", "DigitizWork. All rights reserved.", "Year is added automatically."),
 ]
@@ -247,6 +249,12 @@ home += [
     ("aboutTeaser.paragraphs.1", "About (home)", "", "Paragraph 1", "[Placeholder] DigitizWork brings together consultants who build software for a living. AI makes us faster; experience makes the results dependable.", "1-2 sentences."),
     ("aboutTeaser.paragraphs.2", "About (home)", "", "Paragraph 2", "[Placeholder] One or two sentences about who DigitizWork is and why it exists, limited to facts the owner has confirmed.", "1-2 sentences. Facts only."),
     ("aboutTeaser.cta", "About (home)", "", "Button", "Meet our consultants", "2-4 words. Goes to /about."),
+    ("trustedTeaser.eyebrow", "Clients teaser (home)", "", "Small label", "Clients and feedback", "2-4 words."),
+    ("trustedTeaser.title", "Clients teaser (home)", "", "Heading", "Trusted by organisations like yours", "Only claim 'trusted by' once real clients are listed."),
+    ("trustedTeaser.intro", "Clients teaser (home)", "", "Intro", "[Placeholder] A short line introducing the organisations DigitizWork works with and what they say.", "1 sentence."),
+    ("trustedTeaser.clientsLabel", "Clients teaser (home)", "", "Logo strip label", "Some of our clients", "2-4 words."),
+    ("trustedTeaser.clientsLink", "Clients teaser (home)", "", "Link to /clients", "See our clients", "2-4 words."),
+    ("trustedTeaser.testimonialsLink", "Clients teaser (home)", "", "Link to /testimonials", "Read client feedback", "2-4 words."),
     ("contact.eyebrow", "Contact", "", "Small label", "Contact", "1-2 words."),
     ("contact.title", "Contact", "", "Heading", "Let's build something intelligent", "Max ~50 characters."),
     ("contact.intro", "Contact", "", "Intro paragraph", "Tell us about your idea or the problem you want to solve. A consultant will get back to you to talk through the options. [Placeholder: response time to be confirmed]", "Say how fast you reply, e.g. 'within 1 business day'."),
@@ -291,6 +299,109 @@ about += [
     ("aboutPage.cta.button", "Call to action", "", "Button", "Start a project", "2-4 words."),
 ]
 content_sheet("About page", about)
+
+# ---------------- Clients page ----------------
+clients_page = [
+    ("clientsPage.hero.eyebrow", "Hero", "", "Small label", "Our clients", "2-3 words."),
+    ("clientsPage.hero.title", "Hero", "", "Heading (part 1)", "Organisations we", "Max ~40 characters."),
+    ("clientsPage.hero.titleHighlight", "Hero", "", "Heading (part 2, gradient colour)", "build with.", "Max ~40 characters."),
+    ("clientsPage.hero.lead", "Hero", "", "Intro paragraph", "[Placeholder] A short introduction to the organisations DigitizWork works with. Client names, logos and stories appear here only with each client's permission.", "1-2 sentences."),
+    ("clientsPage.intro.eyebrow", "Who we help", "", "Small label", "Who we help", "2-3 words."),
+    ("clientsPage.intro.title", "Who we help", "", "Heading", "[Placeholder] The kinds of organisations we help", "Max ~50 characters."),
+    ("clientsPage.intro.paragraphs.1", "Who we help", "", "Paragraph 1", "[Placeholder] Describe the kinds of organisations DigitizWork helps, for example by size, sector or stage, using only facts the owner has confirmed.", "2-3 sentences."),
+    ("clientsPage.intro.paragraphs.2", "Who we help", "", "Paragraph 2", "[Placeholder] Describe the typical problems these organisations bring to DigitizWork and how AI-powered software helps.", "2-3 sentences."),
+    ("clientsPage.audiences.eyebrow", "Typical clients", "", "Small label", "Typical clients", "2-3 words."),
+    ("clientsPage.audiences.title", "Typical clients", "", "Heading", "[Placeholder] Who we typically work with", "Max ~50 characters."),
+]
+for i in range(1, 4):
+    clients_page += [
+        (f"clientsPage.audiences.items.{i}.title", "Typical clients", f"Type {i}", "Title", f"[Placeholder] Organisation type {i}", "2-4 words, e.g. 'Small businesses'."),
+        (f"clientsPage.audiences.items.{i}.description", "Typical clients", f"Type {i}", "Description", "[Placeholder] One sentence on how DigitizWork helps this kind of organisation.", "1 sentence."),
+    ]
+clients_page += [
+    ("clientsPage.clientList.eyebrow", "Client list", "", "Small label", "Client list", "2-3 words."),
+    ("clientsPage.clientList.title", "Client list", "", "Heading", "Some of the organisations we work with", "Max ~50 characters. Clients themselves go in the 'Clients' tab."),
+    ("clientsPage.clientList.intro", "Client list", "", "Intro", "Shown with each client's permission.", "1 sentence."),
+    ("clientsPage.caseStudies.eyebrow", "Case studies", "", "Small label", "Case studies", "2-3 words."),
+    ("clientsPage.caseStudies.title", "Case studies", "", "Heading", "[Placeholder] Selected client stories", "Max ~50 characters. Stories go in the 'Case studies' tab."),
+    ("clientsPage.caseStudies.intro", "Case studies", "", "Intro", "[Placeholder] Short summaries of real projects, published with each client's approval.", "1 sentence."),
+    ("clientsPage.cta.title", "Call to action", "", "Heading", "Could your organisation be next?", "2-6 words."),
+    ("clientsPage.cta.text", "Call to action", "", "Text", "[Placeholder] Tell us what you want to build and we will talk through the options.", "1 sentence."),
+    ("clientsPage.cta.button", "Call to action", "", "Button", "Start a project", "2-4 words."),
+]
+content_sheet("Clients page", clients_page)
+
+# ---------------- Feedback page ----------------
+fb_page = [
+    ("testimonialsPage.hero.eyebrow", "Hero", "", "Small label", "Client feedback", "2-3 words."),
+    ("testimonialsPage.hero.title", "Hero", "", "Heading (part 1)", "What our clients", "Max ~40 characters."),
+    ("testimonialsPage.hero.titleHighlight", "Hero", "", "Heading (part 2, gradient colour)", "say about working with us.", "Max ~40 characters."),
+    ("testimonialsPage.hero.lead", "Hero", "", "Intro paragraph", "[Placeholder] Feedback from the organisations DigitizWork works with, published only with each person's written consent.", "1-2 sentences."),
+    ("testimonialsPage.list.eyebrow", "Feedback list", "", "Small label", "Feedback", "1-2 words."),
+    ("testimonialsPage.list.title", "Feedback list", "", "Heading", "In our clients' words", "Max ~50 characters. Quotes go in the 'Testimonials' tab."),
+    ("testimonialsPage.list.intro", "Feedback list", "", "Intro", "Every quote is published with the client's written consent.", "1 sentence."),
+    ("testimonialsPage.share.title", "Share feedback", "", "Heading", "Worked with us? Share your feedback", "Max ~50 characters."),
+    ("testimonialsPage.share.text", "Share feedback", "", "Text", "[Placeholder] We would love to hear how your project went. Send us a message and we will ask for your consent before publishing anything.", "1-2 sentences."),
+    ("testimonialsPage.share.button", "Share feedback", "", "Button", "Share your feedback", "2-4 words."),
+    ("testimonialsPage.cta.title", "Call to action", "", "Heading", "Ready to start your project?", "2-6 words."),
+    ("testimonialsPage.cta.text", "Call to action", "", "Text", "[Placeholder] Tell us what you want to build. A consultant will get back to you.", "1 sentence."),
+    ("testimonialsPage.cta.button", "Call to action", "", "Button", "Start a project", "2-4 words."),
+]
+content_sheet("Feedback page", fb_page)
+
+
+def people_sheet(title, headers, widths, rows_n, yes_no_cols, count_col, count_src, notes):
+    s = wb.create_sheet(title)
+    s.freeze_panes = "C2"
+    for i, h in enumerate(headers, 1):
+        c = s.cell(1, i, h); c.font = F(bold=True, color="FFFFFF"); c.fill = HEAD_FILL; c.alignment = Alignment(wrap_text=True, vertical="center"); c.border = BORDER
+        s.column_dimensions[c.column_letter].width = widths[i - 1]
+    s.row_dimensions[1].height = 32
+    yn = DataValidation(type="list", formula1='"Yes,No"', allow_blank=True)
+    s.add_data_validation(yn)
+    for n in range(1, rows_n + 1):
+        r = n + 1
+        s.cell(r, 1, n)
+        for col in range(1, len(headers) + 1):
+            c = s.cell(r, col); c.font = F(); c.alignment = WRAP; c.border = BORDER
+            if col not in (1, count_col):
+                c.fill = INPUT_FILL
+        if count_col:
+            s.cell(r, count_col, f'=IF({count_src}{r}="","",LEN({count_src}{r}))').alignment = Alignment(horizontal="center", vertical="top")
+        for col in yes_no_cols:
+            yn.add(f"{s.cell(r, col).column_letter}{r}")
+    r = rows_n + 3
+    for label, text in notes:
+        s.cell(r, 1, label).font = F(bold=True)
+        s.cell(r, 3, text).font = F()
+        r += 1
+    return s
+
+
+people_sheet(
+    "Clients",
+    ["#", "Show on site? (Yes/No)", "Client name (as approved)", "Industry", "Website URL", "Logo file name", "Permission to show name and logo (Yes/No)", "Show in home logo strip? (Yes/No)", "Notes for Claude"],
+    [5, 12, 30, 22, 32, 26, 18, 14, 34], 12, (2, 7, 8), None, None,
+    [("Current:", "The site shows 6 placeholder client cards. Field IDs: clients[n].name, clients[n].industry, clients[n].website, clients[n].logo."),
+     ("Logos:", "SVG preferred, otherwise PNG/WebP with a transparent background, about 240 x 96 px. Send the files with this sheet."),
+     ("Permission:", "Only list clients who have agreed in writing to be named. Rows without 'Yes' are not shown.")],
+)
+people_sheet(
+    "Case studies",
+    ["#", "Show on site? (Yes/No)", "Client name", "Project title", "Challenge (1-2 sentences)", "Solution (1-2 sentences)", "Outcome (1-2 sentences)", "Image file name (optional)", "Client approved this text (Yes/No)", "Notes for Claude"],
+    [5, 12, 24, 30, 45, 45, 45, 24, 16, 30], 6, (2, 9), None, None,
+    [("Current:", "The site shows 2 placeholder case studies. Field IDs: caseStudies[n].client, .title, .challenge, .solution, .outcome, .image."),
+     ("Numbers:", "Only include figures (e.g. '40% faster') if the client has verified them in writing."),
+     ("Optional:", "Leave this tab empty to hide the case studies section.")],
+)
+people_sheet(
+    "Testimonials",
+    ["#", "Show on site? (Yes/No)", "Quote (exact approved words)", "Person's name", "Role", "Company", "Star rating 1-5 (optional, only if they gave it)", "Photo file name (optional)", "Written consent to publish (Yes/No)", "Quote characters", "Notes for Claude"],
+    [5, 12, 60, 24, 22, 24, 16, 24, 16, 11, 30], 10, (2, 9), 10, "C",
+    [("Current:", "The site shows 3 placeholder testimonials. Field IDs: testimonials[n].quote, .name, .role, .company, .rating, .photo."),
+     ("Consent:", "Australian Consumer Law prohibits fake or misleading reviews. Only real quotes, with written consent. Rows without 'Yes' are not shown."),
+     ("Featured:", "Testimonial #1 is also shown on the home page.")],
+)
 
 # ---------------- Consultants ----------------
 s = wb.create_sheet("Consultants")
@@ -340,6 +451,9 @@ imgs = [
     ("aboutCollaboration", "Home - About section", "/images/about/collaboration.svg", "Illustration of people connected around a central AI node, representing consultants working with AI."),
     ("aboutTeamNetwork", "About page - hero", "/images/about/team-network.svg", "Illustration of a network of people linked together around a glowing core."),
     ("consultantPlaceholder", "About page - consultant without photo", "/images/team/avatar-placeholder.svg", "(decorative)"),
+    ("clientsHero", "Clients page - hero", "/images/clients/clients-hero.svg", "Illustration of six abstract organisation tiles connected to a glowing central core."),
+    ("testimonialsHero", "Feedback page - hero", "/images/testimonials/testimonials-hero.svg", "Illustration of layered quote cards with abstract text lines and faceless avatars."),
+    ("clientLogoPlaceholder", "Clients - client without logo", "/images/clients/logo-placeholder.svg", "(decorative)"),
 ]
 for i, row in enumerate(imgs, 2):
     for col, v in enumerate(row, 1):
@@ -394,9 +508,11 @@ for i, h in enumerate(lh, 1):
     c = s.cell(1, i, h); c.font = F(bold=True, color="FFFFFF"); c.fill = HEAD_FILL; c.border = BORDER
     s.column_dimensions[c.column_letter].width = lw[i - 1]
 first = [TODAY, "v1", "Claude", "Initial export of current site content (placeholder and draft copy, confirmed email and location).", ""]
-for col, v in enumerate(first, 1):
-    c = s.cell(2, col, v); c.font = F(); c.border = BORDER; c.alignment = WRAP
-for r in range(3, 13):
+second = [TODAY, "v2", "Claude", "Added Clients page, Feedback page, home clients teaser, new menu labels, and Clients / Case studies / Testimonials tabs.", "DIG-59, DIG-60, DIG-61"]
+for row_i, vals in ((2, first), (3, second)):
+    for col, v in enumerate(vals, 1):
+        c = s.cell(row_i, col, v); c.font = F(); c.border = BORDER; c.alignment = WRAP
+for r in range(4, 14):
     for col in range(1, 6):
         c = s.cell(r, col); c.border = BORDER; c.font = F(); c.alignment = WRAP
         if col < 5:

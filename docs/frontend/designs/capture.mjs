@@ -18,11 +18,15 @@ const shots = [
   { file: "DIG-23-home-mobile-390.png", path: "/", width: 390, height: 844 },
   { file: "DIG-53-about-desktop-1440.png", path: "/about", width: 1440, height: 900 },
   { file: "DIG-53-about-mobile-390.png", path: "/about", width: 390, height: 844 },
+  { file: "DIG-59-clients-desktop-1440.png", path: "/clients", width: 1440, height: 900 },
+  { file: "DIG-59-clients-mobile-390.png", path: "/clients", width: 390, height: 844 },
+  { file: "DIG-60-testimonials-desktop-1440.png", path: "/testimonials", width: 1440, height: 900 },
+  { file: "DIG-60-testimonials-mobile-390.png", path: "/testimonials", width: 390, height: 844 },
 ];
 const checkWidths = [360, 390, 768, 1024, 1280, 1440];
 
 const browser = await chromium.launch();
-const results = { screenshots: [], overflow: [], h1: {}, consoleErrors: [], menu: {} };
+const results = { screenshots: [], overflow: [], h1: {}, titles: {}, placeholderTags: {}, consoleErrors: [], menu: {}, desktopNav: {} };
 
 async function openPage(width, height, path) {
   const context = await browser.newContext({
@@ -73,6 +77,7 @@ for (const s of shots) {
     .getByRole("button", { name: "Close menu" })
     .getAttribute("aria-expanded");
   results.menu.focusAfterOpen = await page.evaluate(() => document.activeElement?.textContent?.trim());
+  results.menu.items = await nav.getByRole("listitem").allTextContents();
   await page.waitForTimeout(250);
   await page.screenshot({ path: `${OUT}/DIG-23-mobile-menu.png` });
   results.screenshots.push("DIG-23-mobile-menu.png");
@@ -89,16 +94,33 @@ for (const s of shots) {
 }
 
 // Horizontal overflow and H1 count at each width.
-for (const path of ["/", "/about"]) {
+const pages = ["/", "/about", "/clients", "/testimonials"];
+for (const path of pages) {
   for (const width of checkWidths) {
     const { context, page } = await openPage(width, 900, path);
-    const { scrollWidth, clientWidth, h1 } = await page.evaluate(() => ({
-      scrollWidth: document.documentElement.scrollWidth,
-      clientWidth: document.documentElement.clientWidth,
-      h1: document.querySelectorAll("h1").length,
-    }));
+    const { scrollWidth, clientWidth, h1, title, canonical, placeholderTags, navItems, navHeight } =
+      await page.evaluate(() => {
+        const nav = document.querySelector('nav[aria-label="Main"]');
+        return {
+          scrollWidth: document.documentElement.scrollWidth,
+          clientWidth: document.documentElement.clientWidth,
+          h1: document.querySelectorAll("h1").length,
+          title: document.title,
+          canonical: document.querySelector('link[rel="canonical"]')?.getAttribute("href"),
+          // Visible "Placeholder" tags on cards (DIG-59, DIG-60 integrity rule)
+          placeholderTags: [...document.querySelectorAll("main span")].filter(
+            (el) => el.textContent?.trim() === "Placeholder" && el.offsetParent !== null,
+          ).length,
+          navItems: nav && nav.offsetParent !== null ? nav.querySelectorAll("li").length : 0,
+          navHeight: nav && nav.offsetParent !== null ? Math.round(nav.getBoundingClientRect().height) : 0,
+        };
+      });
     results.overflow.push({ path, width, horizontalScroll: scrollWidth > clientWidth });
     results.h1[path] = h1;
+    results.titles[path] = { title, canonical };
+    results.placeholderTags[path] = placeholderTags;
+    // Desktop nav must stay on one line (single row of pills is about 36px tall).
+    if (path === "/" && width >= 1024) results.desktopNav[width] = { items: navItems, height: navHeight };
     await context.close();
   }
 }

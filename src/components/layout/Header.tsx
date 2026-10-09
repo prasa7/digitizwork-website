@@ -7,11 +7,14 @@ import { MobileMenu } from "./MobileMenu";
 
 interface HeaderProps {
   siteName: string;
+  /** Full list for the mobile menu. */
   nav: NavLink[];
+  /** Shorter list for the desktop header (defaults to nav). */
+  desktopNav?: NavLink[];
   cta: NavLink;
 }
 
-export function Header({ siteName, nav, cta }: HeaderProps) {
+export function Header({ siteName, nav, desktopNav, cta }: HeaderProps) {
   return (
     <header className="surface-dark sticky top-0 z-50">
       {/* Blur lives on its own layer so it does not trap the mobile menu's fixed backdrop */}
@@ -21,7 +24,7 @@ export function Header({ siteName, nav, cta }: HeaderProps) {
       />
       <Container className="flex h-18 items-center justify-between gap-6">
         <Wordmark name={siteName} />
-        <DesktopNav items={nav} />
+        <DesktopNav items={desktopNav ?? nav} />
         <div className="flex items-center gap-3">
           <div className="hidden sm:block">
             <ButtonLink link={cta} size="sm" />

@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { PreviewBanner } from "@/components/layout/PreviewBanner";
 import { SkipLink } from "@/components/layout/SkipLink";
-import { footer, headerCta, primaryNav, site } from "@/content";
+import { desktopNav, footer, headerCta, primaryNav, site } from "@/content";
 import "./globals.css";
 
 // Self-hosted variable fonts (SIL OFL 1.1, latin subset from Fontsource 5.3.0) via next/font/local.
@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <SkipLink />
         <PreviewBanner message={site.previewNotice} />
-        <Header siteName={site.name} nav={primaryNav} cta={headerCta} />
+        <Header siteName={site.name} nav={primaryNav} desktopNav={desktopNav} cta={headerCta} />
         <main id="main" tabIndex={-1} className="focus:outline-none">
           {children}
         </main>
