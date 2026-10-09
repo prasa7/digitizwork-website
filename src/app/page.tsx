@@ -4,8 +4,19 @@ import { Approach } from "@/components/sections/Approach";
 import { Contact } from "@/components/sections/Contact";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
+import { TrustedTeaser } from "@/components/sections/TrustedTeaser";
 import { WhyUs } from "@/components/sections/WhyUs";
-import { aboutTeaser, approach, contact, hero, services, whyUs } from "@/content";
+import {
+  aboutTeaser,
+  approach,
+  clients,
+  contact,
+  hero,
+  services,
+  testimonials,
+  trustedTeaser,
+  whyUs,
+} from "@/content";
 
 // TODO(content): title/description from docs/marketing/seo-strategy.md (DIG-27).
 export const metadata: Metadata = {
@@ -24,6 +35,7 @@ export default function HomePage() {
       <Approach content={approach} />
       <WhyUs content={whyUs} />
       <AboutTeaser content={aboutTeaser} />
+      <TrustedTeaser content={trustedTeaser} clients={clients} testimonials={testimonials} />
       <Contact content={contact} />
     </>
   );

@@ -16,7 +16,10 @@ This brief supersedes the launch sitemap in [phase-1-kickoff.md](phase-1-kickoff
 
 Business objectives (target audience, primary conversion, markets) cannot be stated yet: they depend on discovery answers Q1 to Q4.
 
-## 2. In scope (Phase 1: single-page home plus /about)
+## 2. In scope (Phase 1: home plus /about, /clients and /testimonials)
+
+- Clients page `/clients` and Feedback page `/testimonials`, plus a home page teaser (logo strip and one featured testimonial) and nav updates (owner request 2026-10-10, decision D13). These use tagged placeholders only until the owner supplies real clients (with permission to display) and testimonials (with written consent) (DIG-59, DIG-60, DIG-61). No invented clients, logos, numbers or quotes: fake reviews breach Australian Consumer Law.
+- Public preview (owner decision D11): live on AWS EC2 at http://3.106.125.98 with placeholder content. This is not the QA-gated launch.
 
 - One page at `/` with sections. Proposed section order, to be confirmed by the Marketing Agent's section map: Header and navigation, Hero, Services, About / How we work, Contact (form plus published contact details), Footer. Confirmed public contact email (owner, 2026-10-10): consultant@digitizwork.com, shown in Contact and the footer. Confirmed public location (owner, 2026-10-10): "Melbourne, Australia" (city and country only, no street address), shown in Contact and the footer. Phone, street address (if ever) and the form-receiving inbox are not yet confirmed.
 - About Us page at `/about` presenting the real consultants (owner request 2026-10-09, decision D10). It uses clearly marked placeholder cards until the owner supplies names, roles, bios and photos with consent to publish (DIG-53, DIG-54). No invented people.
@@ -37,7 +40,7 @@ Business objectives (target audience, primary conversion, markets) cannot be sta
 | Item | Phase | Note |
 |---|---|---|
 | Multi-page site (Services overview, Service detail, Contact, Terms pages) | Phase 2 | Kickoff section 5 sitemap; plan epic E8. About moved to Phase 1 (D10) |
-| Case studies, Blog / Insights, Careers, Industries | Phase 2+ | Only when real material exists; no placeholder proof |
+| Blog / Insights, Careers, Industries | Phase 2+ | Only when real material exists; no placeholder proof. Case studies moved to Phase 1 as optional cards on /clients (D13), real and permitted only |
 | Headless CMS | Later | Content lives in code (assumption A3) |
 | Hosting, domain, DNS, production deployment | Requires explicit owner approval | No account creation or deployment without approval |
 | Analytics and cookie consent | Requires owner decision (Q11) | Default: none at launch |

@@ -1,6 +1,6 @@
 export { site } from "./site";
 export { images } from "./images";
-export { primaryNav, headerCta, legalNav } from "./navigation";
+export { primaryNav, desktopNav, headerCta, legalNav } from "./navigation";
 export { hero } from "./sections/hero";
 export { services } from "./sections/services";
 export { approach } from "./sections/approach";
@@ -10,5 +10,10 @@ export { contact } from "./sections/contact";
 export { footer } from "./sections/footer";
 export { aboutPage } from "./pages/about";
 export { consultants } from "./consultants";
+export { trustedTeaser } from "./sections/trusted";
+export { clientsPage } from "./pages/clients";
+export { testimonialsPage } from "./pages/testimonials";
+export { clients, caseStudies } from "./clients";
+export { testimonials } from "./testimonials";
 export { hrefFor } from "./links";
 export type * from "./types";

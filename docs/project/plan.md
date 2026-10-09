@@ -17,7 +17,15 @@ Jira is now the source of truth for status; this file keeps scope, acceptance cr
 - Added 2026-10-10: DIG-56 (E2-T8, Done) and DIG-57 (E2-S9). DIG-57 relates to DIG-13, DIG-19 and DIG-54.
 - Pre-existing DIG-1 and DIG-2 (Jira sample tasks) were left untouched. The SCRUM project was not touched.
 
-Status values: Done, In Progress, To Do, Blocked. In Progress as of 2026-10-10: DIG-22, DIG-23, DIG-47, DIG-51, DIG-52, DIG-53, DIG-58.
+Status values: Done, In Progress, To Do, Blocked. In Progress as of 2026-10-10: DIG-22, DIG-23, DIG-47, DIG-51, DIG-52, DIG-53, DIG-58, DIG-59, DIG-60.
+
+Public preview LIVE 2026-10-10 at http://3.106.125.98:
+- / and /about return 200 (checked by the coordinator and the PM).
+- Serves the image from main commit 975b420.
+- No HTTPS, no domain, no Elastic IP.
+- DIG-58 stays In Progress until a fully green pipeline run is seen. The 975b420 run probably failed its health check while port 80 was still blocked.
+
+Clients/Feedback (D13): DIG-59 and DIG-60 are In Progress; DIG-61 (content) blocks both. Both block DIG-51 and relate to DIG-57.
 
 Deployment (D11, D12; 2026-10-10):
 - CI/CD workflow committed in 4b7f6d7 (DIG-58). It runs typecheck on PRs and pushes; on main it builds the image, pushes it to GHCR and deploys over SSH to EC2.
@@ -37,14 +45,14 @@ The owner review is in progress on DIG-51. Owner approval there is the remaining
 | Epic | Items | Done | Sprint 1 | Sprint 2 | Sprint 3 | Backlog |
 |---|---|---|---|---|---|---|
 | E1 Discovery & Planning | 6 | 3 | 3 | 0 | 0 | 0 |
-| E2 Brand & Content | 9 | 1 | 2 | 6 | 0 | 0 |
-| E3 Design System & Frontend | 9 | 0 | 5 | 4 | 0 | 0 |
+| E2 Brand & Content | 10 | 1 | 2 | 7 | 0 | 0 |
+| E3 Design System & Frontend | 11 | 0 | 5 | 6 | 0 | 0 |
 | E4 Contact Form & Backend | 6 | 0 | 1 | 5 | 0 | 0 |
 | E5 Local Dev & DevOps (Docker) | 6 | 3 | 2 | 1 | 0 | 0 |
 | E6 QA & Accessibility | 5 | 0 | 1 | 1 | 3 | 0 |
 | E7 Launch | 4 | 0 | 0 | 0 | 4 | 0 |
 | E8 Phase 2 Multi-page Expansion | 3 | 0 | 0 | 0 | 0 | 3 |
-| Total | 48 | 7 | 14 | 17 | 7 | 3 |
+| Total | 51 | 7 | 14 | 20 | 7 | 3 |
 
 (Done items are counted in "Done" only, not in a sprint column.)
 
@@ -124,6 +132,7 @@ The owner reviews the section map, design system proposal, API contract and test
 | E2-S7 | DIG-55 | Story | Generate and approve AI imagery (optional) | product-owner, frontend | E3-S8 (image-prompts.md) | Sprint 2 | To Do |
 | E2-T8 | DIG-56 | Task | Owner content workbook (Excel) for site copy | pm, product-owner, marketing | none | Sprint 1 | Done |
 | E2-S9 | DIG-57 | Story | Apply owner content workbook v2 to the site | frontend, marketing | owner returns filled workbook (v2) | Sprint 2 | To Do |
+| E2-S10 | DIG-61 | Story | Client list, logos and testimonials content | product-owner, marketing | owner input (via workbook) | Sprint 2 | To Do. ACs: names and logos with permission to display; optional case studies; testimonials with written consent; entered via the workbook. Blocks DIG-59 and DIG-60 |
 
 **E2-S1 Positioning, audience and brand voice**
 Turn the owner's discovery answers into positioning, audience definition, value proposition and voice guidelines.
@@ -201,6 +210,8 @@ Evidence: PM check 2026-10-10: files present; tab names read from xl/workbook.xm
 | E3-S7 | DIG-51 | Story | UI design review: owner approval of visual direction | frontend, pm (decision: product-owner) | E3-S1, E3-S2, E3-S8, E3-S9 | Sprint 1 | In Progress (owner reviewing since 2026-10-10) |
 | E3-S8 | DIG-52 | Story | AI-themed visual design and illustrations | frontend | E3-S1 | Sprint 1 | In Progress |
 | E3-S9 | DIG-53 | Story | About us page with consultants | frontend | E3-S2; E2-S6 to close | Sprint 1 | In Progress (placeholder cards) |
+| E3-S10 | DIG-59 | Story | Clients page (/clients) | frontend | E2-S10 (DIG-61) to close | Sprint 2 | In Progress (branch feature/clients-and-feedback-pages; tagged placeholders) |
+| E3-S11 | DIG-60 | Story | Client feedback page (/testimonials) | frontend | E2-S10 (DIG-61) to close | Sprint 2 | In Progress (same branch; tagged placeholders) |
 
 **E3-S1 Design system proposal**
 Propose colour, typography, spacing, radius and component styles, using existing brand assets if the owner has them.

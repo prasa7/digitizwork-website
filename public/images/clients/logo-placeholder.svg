@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 96" width="240" height="96" role="img" aria-labelledby="t">
+<title id="t">Placeholder for a client logo</title>
+<rect x="1" y="1" width="238" height="94" rx="14" fill="#F7F9FC" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="5 5"/>
+<rect x="34" y="28" width="40" height="40" rx="10" fill="#E2E8F0"/>
+<circle cx="54" cy="48" r="10" fill="none" stroke="#7D8BA1" stroke-width="2.5"/>
+<path d="M54 38v20M44 48h20" stroke="#7D8BA1" stroke-width="2" stroke-opacity=".5"/>
+<rect x="88" y="36" width="108" height="10" rx="5" fill="#CBD5E1"/>
+<rect x="88" y="54" width="70" height="7" rx="3.5" fill="#E2E8F0"/>
+</svg>

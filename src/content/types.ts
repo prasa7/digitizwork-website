@@ -13,7 +13,13 @@ export type SectionId =
   | "about"
   | "contact"
   | "story"
-  | "team";
+  | "team"
+  | "trusted-by"
+  | "who-we-help"
+  | "client-list"
+  | "case-studies"
+  | "feedback"
+  | "share-feedback";
 
 /**
  * Where a link points. Navigation is declared once with these targets so that
@@ -66,7 +72,10 @@ export type IconName =
   | "rocket"
   | "lock"
   | "target"
-  | "linkedin";
+  | "linkedin"
+  | "quote"
+  | "building"
+  | "external";
 
 export interface SiteConfig {
   name: string;
@@ -217,4 +226,99 @@ export interface Consultant {
   linkedin?: string;
   /** True while the card shows placeholder data (adds a visible "Placeholder" tag). */
   placeholder?: boolean;
+}
+
+/**
+ * A client organisation shown on /clients and in the home "Trusted by" strip.
+ * REAL CLIENTS ONLY, listed with their permission. Never invent names, logos or industries.
+ * Optional fields render only when present.
+ */
+export interface Client {
+  id: string;
+  name: string;
+  /** Logo under /public/images/clients/. Rendered decoratively because the name is shown as text. */
+  logo?: ImageAsset;
+  industry?: string;
+  /** Full URL of the client's website (opens in a new tab). */
+  website?: string;
+  /** True while the card shows placeholder data (adds a visible "Placeholder" tag). */
+  placeholder?: boolean;
+}
+
+/**
+ * A short case study highlight on /clients. Every statement must be approved by the client.
+ * `outcome` must not contain numbers unless the client has verified and approved them in writing.
+ */
+export interface CaseStudy {
+  id: string;
+  /** Client name, exactly as the client has approved it. */
+  client: string;
+  title: string;
+  challenge: string;
+  solution: string;
+  outcome: string;
+  image?: ImageAsset;
+  /** True while the card shows placeholder data (adds a visible "Placeholder" tag). */
+  placeholder?: boolean;
+}
+
+/** Star rating, rendered only when present. */
+export type Rating = 1 | 2 | 3 | 4 | 5;
+
+/**
+ * A client testimonial on /testimonials and in the home teaser.
+ * Publish ONLY with the client's written consent, quoted exactly as approved. Never fabricate
+ * testimonials or change their meaning (Australian Consumer Law prohibits fake reviews).
+ */
+export interface Testimonial {
+  id: string;
+  quote: string;
+  name: string;
+  role?: string;
+  company?: string;
+  /** Headshot under /public/images/testimonials/, supplied by the person. Rendered decoratively next to the name. */
+  photo?: ImageAsset;
+  /** 1 to 5, only if the client gave this rating themselves. */
+  rating?: Rating;
+  /** True while the card shows placeholder data (adds a visible "Placeholder" tag). */
+  placeholder?: boolean;
+}
+
+export interface ClientsPageContent {
+  hero: PageHeroContent;
+  intro: SectionIntro & { paragraphs: string[] };
+  /** Kinds of organisations DigitizWork helps (cards under the intro). */
+  audiences: SectionIntro & { items: FeatureItem[] };
+  clientList: SectionIntro;
+  caseStudies: SectionIntro & {
+    /** Labels used inside every case study card. */
+    labels: { challenge: string; solution: string; outcome: string };
+  };
+  cta: CtaBandContent;
+}
+
+/** Panel inviting feedback. No form: it links to the contact section. */
+export interface FeedbackPromptContent {
+  title: string;
+  text: string;
+  cta: NavLink;
+}
+
+export interface TestimonialsPageContent {
+  hero: PageHeroContent;
+  list: SectionIntro;
+  share: FeedbackPromptContent;
+  cta: CtaBandContent;
+}
+
+/** Home page teaser linking to /clients and /testimonials. */
+export interface TrustedTeaserContent extends SectionIntro {
+  /** Small heading above the client logo strip. */
+  clientsLabel: string;
+  /** Maximum number of clients shown in the strip. */
+  clientLimit: number;
+  /** id of the testimonial to feature; falls back to the first one. */
+  featuredTestimonialId?: string;
+  clientsLink: NavLink;
+  testimonialsLink: NavLink;
 }
