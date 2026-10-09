@@ -17,7 +17,13 @@ Jira is now the source of truth for status; this file keeps scope, acceptance cr
 - Added 2026-10-10: DIG-56 (E2-T8, Done) and DIG-57 (E2-S9). DIG-57 relates to DIG-13, DIG-19 and DIG-54.
 - Pre-existing DIG-1 and DIG-2 (Jira sample tasks) were left untouched. The SCRUM project was not touched.
 
-Status values: Done, In Progress, To Do, Blocked. In Progress as of 2026-10-09: DIG-22, DIG-23, DIG-52, DIG-53.
+Status values: Done, In Progress, To Do, Blocked. In Progress as of 2026-10-10: DIG-22, DIG-23, DIG-51, DIG-52, DIG-53.
+
+UI design delivered 2026-10-10 in commit a77bd4f (branch feature/DIG-22-DIG-23-ui-design, pushed). Screenshots, design-system.md, components.md and image-prompts.md are linked from the DIG-22, DIG-23, DIG-52 and DIG-53 comments. Verification:
+- Frontend reports tsc exit 0, production build exit 0, and passing Playwright smoke checks.
+- PM confirmed / and /about return 200 on :3000 and :8080.
+- Lint has NOT been run (DIG-36) and there has been no axe scan.
+The owner review is in progress on DIG-51. Owner approval there is the remaining acceptance criterion for DIG-22, DIG-23, DIG-52 and DIG-53. DIG-53 also cannot close until DIG-54 is done.
 
 ## Summary
 
@@ -185,7 +191,7 @@ Evidence: PM check 2026-10-10: files present; tab names read from xl/workbook.xm
 | E3-S4 | DIG-25 | Story | About and Footer sections | frontend | E2-S3, E3-S1, E3-S2 | Sprint 2 | To Do |
 | E3-S5 | DIG-26 | Story | Contact section and accessible contact form UI | frontend | E2-S3, E4-S2, E3-S2 | Sprint 2 | To Do |
 | E3-S6 | DIG-27 | Story | Metadata, SEO files, favicon/OG image, 404 and privacy view | frontend | E2-S4, E2-S5, E1-T4 | Sprint 2 | To Do |
-| E3-S7 | DIG-51 | Story | UI design review: owner approval of visual direction | frontend, pm (decision: product-owner) | E3-S1, E3-S2, E3-S8, E3-S9 | Sprint 1 | To Do |
+| E3-S7 | DIG-51 | Story | UI design review: owner approval of visual direction | frontend, pm (decision: product-owner) | E3-S1, E3-S2, E3-S8, E3-S9 | Sprint 1 | In Progress (owner reviewing since 2026-10-10) |
 | E3-S8 | DIG-52 | Story | AI-themed visual design and illustrations | frontend | E3-S1 | Sprint 1 | In Progress |
 | E3-S9 | DIG-53 | Story | About us page with consultants | frontend | E3-S2; E2-S6 to close | Sprint 1 | In Progress (placeholder cards) |
 

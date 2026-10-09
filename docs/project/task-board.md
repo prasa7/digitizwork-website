@@ -3,7 +3,7 @@
 The backlog lives in Jira project **DIG** (Digitizwork, team-managed Scrum). Board: https://digitizwork.atlassian.net/jira/software/projects/DIG/boards
 Jira is the source of truth for status. [plan.md](plan.md) holds scope, acceptance criteria and the plan-ID-to-Jira-key mapping.
 
-Last updated: 2026-10-09 (PM agent). Sprints are not yet created on the board: the owner creates Sprint 1 to 3 and moves issues by their `sprint-1` / `sprint-2` / `sprint-3` / `backlog` labels.
+Last updated: 2026-10-10 (PM agent). Sprints are not yet created on the board: the owner creates Sprint 1 to 3 and moves issues by their `sprint-1` / `sprint-2` / `sprint-3` / `backlog` labels.
 
 ## Summary by epic
 
@@ -27,6 +27,18 @@ Last updated: 2026-10-09 (PM agent). Sprints are not yet created on the board: t
 | E3-S2 | DIG-23 | Page shell and navigation | Started 2026-10-09, same branch |
 | E3-S8 | DIG-52 | AI-themed visual design and SVG illustrations | Started 2026-10-09, same branch |
 | E3-S9 | DIG-53 | About us page with consultants | Started 2026-10-09, same branch; placeholder cards; cannot close before DIG-54 |
+| E3-S7 | DIG-51 | UI design review | Owner reviewing since 2026-10-10. Decisions needed: visual direction, services / How we work / Why us, SVG or AI images, consultant details, domain and privacy format |
+
+UI design delivered 2026-10-10 in commit a77bd4f, which is pushed. Deliverables:
+- Screenshots: `docs/frontend/designs/`
+- `design-system.md`, `components.md` and `image-prompts.md`
+
+Verification:
+- / and /about return 200 on :3000 and :8080 (PM check).
+- tsc, build and Playwright smoke checks pass, as reported by frontend.
+- Lint not run (DIG-36). No axe scan yet.
+
+DIG-25: the About teaser and footer are built, but the issue stays To Do until its copy is supplied.
 
 ## Done (with evidence)
 
