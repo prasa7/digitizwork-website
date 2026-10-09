@@ -21,6 +21,9 @@ Likelihood and impact: Low / Medium / High.
 | R10 | Lighthouse 90+ or WCAG 2.2 AA not met late in the cycle | Medium | Medium | Static rendering, minimal client JS, contrast checked in design system; a11y checks during build, not only in Sprint 3 | frontend / qa | E3-S1, E6-S3, E6-S4 | Open |
 | R11 | Jira project not yet created; plan and Jira may drift once both exist | Medium | Low | Created from plan.md in one pass on 2026-10-09 (DIG-3 to DIG-50); keys recorded in plan.md; Jira is now source of truth for status. Residual: sprints must be created manually by the owner | pm | E1-T5 | Mitigated |
 | R12 | Accidental deployment or third-party account creation without approval | Low | High | Explicit approval gate (E7-T3, E7-T4); agent rules forbid it | orchestrator | E7-T4 | Open |
+| R14 | /about cannot launch without real consultant names, bios and photos with consent to publish; placeholder cards must not ship | High | High | DIG-54 blocks DIG-53; QA release check for zero placeholders; consent recorded per consultant | product-owner / qa | DIG-53, DIG-54 | Open |
+| R15 | Scope growth in Sprint 1 (two new stories in progress before the owner has approved the visual direction or answered discovery) may cause rework | Medium | Medium | All visual work is gated by the owner review DIG-51; content stays placeholder until DIG-13 is answered | pm | DIG-51, DIG-52, DIG-53 | Open |
+| R16 | AI-generated images could misrepresent people or carry unclear licence terms | Medium | Medium | DIG-55 requires licence terms recorded, owner approval per image, and no AI images presented as real consultants | product-owner | DIG-55 | Open |
 | R13 | Decision log records the workspace as `/mnt/project-files/digitizwork-site`, but the actual workspace is `C:\Users\prasa\Documents\digitizwork-site\digitizwork-site` | Certain | Low | Correct the decision log entry (orchestrator owns that file) | orchestrator | E5-T4 | Open |
 
 ## Decisions
@@ -37,6 +40,7 @@ Carried over from decision-log.md (2026-10-09), plus decisions taken in planning
 | D6 | 2026-10-09 | TypeScript 5.9.3 instead of 7.x | Adopted | TypeScript 7 is a new rewrite; Next.js compatibility not yet confirmed | decision-log.md |
 | D7 | 2026-10-09 | No hosting or deployment without owner approval | Adopted (owner instruction) | Owner control of cost and exposure | Owner, 2026-10-09 |
 | D8 | 2026-10-09 | Backlog planned in docs/project/plan.md; Jira issues created only after the owner supplies the new project key (key DIG supplied; backlog created 2026-10-09) | Adopted, done | Owner is creating a new Jira project | Owner, 2026-10-09 |
+| D10 | 2026-10-09 | About page moved into Phase 1; the site is the single-page home plus `/about` (consultants page). AI-themed SVG visual design added to Phase 1 | Adopted (owner request) | Owner wants to present the real consultants and a visually rich, AI-themed design | Owner, 2026-10-09; Jira DIG-52, DIG-53, DIG-54, DIG-55 |
 | D9 | 2026-10-09 | Three sprints for Phase 1 (definition, build, verification and launch readiness); Phase 2 in backlog | Proposed (PM) | Matches dependency order; sprint length to be set by owner | PM plan |
 
 ## Pending owner decisions

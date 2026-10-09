@@ -8,7 +8,7 @@ This brief supersedes the launch sitemap in [phase-1-kickoff.md](phase-1-kickoff
 
 ## 1. Objectives
 
-1. Publish a credible single-page website that states clearly what DigitizWork does and for whom, using only owner-confirmed facts.
+1. Publish a credible website (single-page home plus an About Us page at `/about`, per D10) that states clearly what DigitizWork does and for whom, using only owner-confirmed facts.
 2. Convert visitors into enquiries through a working, secure contact form that delivers to the owner's inbox.
 3. Meet a professional quality bar: responsive from 360px, WCAG 2.2 AA, Lighthouse 90+ in all categories, correct SEO metadata.
 4. Build the code so the single page can be split into multiple pages later without a rewrite (sections as reusable components, content in typed modules, navigation that supports both anchors and routes).
@@ -16,9 +16,11 @@ This brief supersedes the launch sitemap in [phase-1-kickoff.md](phase-1-kickoff
 
 Business objectives (target audience, primary conversion, markets) cannot be stated yet: they depend on discovery answers Q1 to Q4.
 
-## 2. In scope (Phase 1: single-page launch)
+## 2. In scope (Phase 1: single-page home plus /about)
 
-- One page at `/` with sections. Proposed section order, to be confirmed by the Marketing Agent's section map: Header and navigation, Hero, Services, About / How we work, Contact (form plus published contact details), Footer.
+- One page at `/` with sections. Proposed section order, to be confirmed by the Marketing Agent's section map: Header and navigation, Hero, Services, About / How we work, Contact (form plus published contact details), Footer. Confirmed public contact email (owner, 2026-10-10): consultant@digitizwork.com, shown in Contact and the footer. Confirmed public location (owner, 2026-10-10): "Melbourne, Australia" (city and country only, no street address), shown in Contact and the footer. Phone, street address (if ever) and the form-receiving inbox are not yet confirmed.
+- About Us page at `/about` presenting the real consultants (owner request 2026-10-09, decision D10). It uses clearly marked placeholder cards until the owner supplies names, roles, bios and photos with consent to publish (DIG-53, DIG-54). No invented people.
+- AI-themed visual design: original SVG illustrations built in code, conveying that DigitizWork delivers software solutions using AI, plus `docs/frontend/image-prompts.md` so the owner can generate photorealistic AI images later (DIG-52, optional DIG-55).
 - Privacy notice covering form data. Whether this is a minimal `/privacy` route or an in-page section is an open question (OQ-3).
 - Not-found (404) page.
 - Contact API: `POST /api/contact` with shared zod validation, email delivery adapter (console adapter locally, real provider only after approval), honeypot, minimum fill time, per-IP rate limit.
@@ -34,7 +36,7 @@ Business objectives (target audience, primary conversion, markets) cannot be sta
 
 | Item | Phase | Note |
 |---|---|---|
-| Multi-page site (Services overview, Service detail, About, Contact, Terms pages) | Phase 2 | Kickoff section 5 sitemap; plan epic E8 |
+| Multi-page site (Services overview, Service detail, Contact, Terms pages) | Phase 2 | Kickoff section 5 sitemap; plan epic E8. About moved to Phase 1 (D10) |
 | Case studies, Blog / Insights, Careers, Industries | Phase 2+ | Only when real material exists; no placeholder proof |
 | Headless CMS | Later | Content lives in code (assumption A3) |
 | Hosting, domain, DNS, production deployment | Requires explicit owner approval | No account creation or deployment without approval |
@@ -83,8 +85,9 @@ Discovery questions from [phase-1-kickoff.md](phase-1-kickoff.md) section 4 are 
 
 | ID | Question | Blocks | Default if undecided |
 |---|---|---|---|
-| OQ-1 | Kickoff Q1 to Q11 (services, customers, location and language, main goal, contact details and receiving inbox, brand assets, domain, confirmable facts, reference sites, privacy jurisdiction, analytics) | All content, design, contact delivery | Q1 to Q5 have no safe default; must be answered |
+| OQ-1 | Kickoff Q1 to Q11 (services, customers, location and language, main goal, contact details and receiving inbox, brand assets, domain, confirmable facts, reference sites, privacy jurisdiction, analytics) | All content, design, contact delivery | Q1 to Q5 have no safe default; must be answered. Q5 partly answered 2026-10-10: public email is consultant@digitizwork.com; phone, address and the form-receiving inbox are still open (the inbox is not assumed to be the same address). Q3 partly answered 2026-10-10: location is Melbourne, Australia; markets served and language/spelling still open. Q5 location is public at city level only |
 | OQ-2 | Confirm assumptions A1 to A8 in the kickoff doc | Copy language, form, email, analytics | Kickoff defaults apply |
+| OQ-9 | [ASSUMPTION, to confirm] Because the business is in Melbourne: (a) the Australian Privacy Act 1988 and Australian Privacy Principles (APPs) are the privacy framework for Q10; (b) Australian English spelling instead of the kickoff A1 default (UK English) | E2-S3 copy, E2-S5 privacy notice | Not adopted until the owner confirms; marketing may draft on these assumptions with [ASSUMPTION] markers |
 | OQ-3 | Privacy notice: separate minimal `/privacy` route (recommended, since the form collects personal data) or an in-page section? | E2-S5, E3-S6 | `/privacy` route |
 | OQ-4 | Email delivery for launch: managed provider (e.g. Resend), your existing mailbox via SMTP, or console-only until hosting is decided? | E4-S3 | Console adapter only; real provider after approval |
 | OQ-5 | Which sections to include on the single page (e.g. is a "How we work" section wanted)? | E2-S2 | Marketing proposes; owner approves |

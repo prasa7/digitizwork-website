@@ -12,23 +12,26 @@ Jira is now the source of truth for status; this file keeps scope, acceptance cr
 - Dependencies: 69 "Blocks" links matching the Depends on column (non-issue dependencies such as "owner Jira key" are not links).
 - Done items DIG-11, DIG-12, DIG-34, DIG-35 transitioned to Done with evidence in the description. DIG-15 (this load) transitioned to Done after verification.
 - Sprints are NOT created (not possible with the available tools). The owner creates Sprint 1 to 3 on the board and moves issues by sprint label.
+- Added later: DIG-51 (E3-S7, UI design review) on 2026-10-09 under DIG-5, blocked by DIG-22 and DIG-23. Total Blocks links now 71.
+- Added later (owner requirements 2026-10-09): DIG-52 (E3-S8), DIG-53 (E3-S9), DIG-54 (E2-S6), DIG-55 (E2-S7). Links: DIG-54 blocks DIG-53; DIG-52 and DIG-53 block DIG-51; DIG-22 blocks DIG-52; DIG-23 blocks DIG-53; DIG-55 relates to DIG-52. Blocks links now 76, plus 1 Relates link. `/about` moved into Phase 1 (decision D10).
+- Added 2026-10-10: DIG-56 (E2-T8, Done) and DIG-57 (E2-S9). DIG-57 relates to DIG-13, DIG-19 and DIG-54.
 - Pre-existing DIG-1 and DIG-2 (Jira sample tasks) were left untouched. The SCRUM project was not touched.
 
-Status values: Done, To Do, Blocked. Nothing is In Progress at the time of writing.
+Status values: Done, In Progress, To Do, Blocked. In Progress as of 2026-10-09: DIG-22, DIG-23, DIG-52, DIG-53.
 
 ## Summary
 
 | Epic | Items | Done | Sprint 1 | Sprint 2 | Sprint 3 | Backlog |
 |---|---|---|---|---|---|---|
 | E1 Discovery & Planning | 6 | 3 | 3 | 0 | 0 | 0 |
-| E2 Brand & Content | 5 | 0 | 2 | 3 | 0 | 0 |
-| E3 Design System & Frontend | 6 | 0 | 2 | 4 | 0 | 0 |
+| E2 Brand & Content | 9 | 1 | 2 | 6 | 0 | 0 |
+| E3 Design System & Frontend | 9 | 0 | 5 | 4 | 0 | 0 |
 | E4 Contact Form & Backend | 6 | 0 | 1 | 5 | 0 | 0 |
-| E5 Local Dev & DevOps (Docker) | 5 | 2 | 2 | 1 | 0 | 0 |
+| E5 Local Dev & DevOps (Docker) | 5 | 3 | 1 | 1 | 0 | 0 |
 | E6 QA & Accessibility | 5 | 0 | 1 | 1 | 3 | 0 |
 | E7 Launch | 4 | 0 | 0 | 0 | 4 | 0 |
 | E8 Phase 2 Multi-page Expansion | 3 | 0 | 0 | 0 | 0 | 3 |
-| Total | 40 | 5 | 11 | 14 | 7 | 3 |
+| Total | 47 | 7 | 13 | 17 | 7 | 3 |
 
 (Done items are counted in "Done" only, not in a sprint column.)
 
@@ -104,6 +107,10 @@ The owner reviews the section map, design system proposal, API contract and test
 | E2-S3 | DIG-19 | Story | Copy for all single-page sections | marketing | E2-S2, E1-T4 | Sprint 2 | To Do |
 | E2-S4 | DIG-20 | Story | SEO strategy for the single page | marketing | E2-S1 | Sprint 2 | To Do |
 | E2-S5 | DIG-21 | Story | Privacy notice content for form data | marketing | E1-T3 (Q5, Q10), E1-T4 (OQ-3), E4-S1 | Sprint 2 | To Do |
+| E2-S6 | DIG-54 | Story | Consultant profiles content and photos | product-owner, marketing | owner input | Sprint 2 | To Do |
+| E2-S7 | DIG-55 | Story | Generate and approve AI imagery (optional) | product-owner, frontend | E3-S8 (image-prompts.md) | Sprint 2 | To Do |
+| E2-T8 | DIG-56 | Task | Owner content workbook (Excel) for site copy | pm, product-owner, marketing | none | Sprint 1 | Done |
+| E2-S9 | DIG-57 | Story | Apply owner content workbook v2 to the site | frontend, marketing | owner returns filled workbook (v2) | Sprint 2 | To Do |
 
 **E2-S1 Positioning, audience and brand voice**
 Turn the owner's discovery answers into positioning, audience definition, value proposition and voice guidelines.
@@ -138,18 +145,49 @@ Draft the privacy notice covering what the contact form collects, why, retention
 - [ ] Matches the actual data flow in `docs/architecture/backend-design.md`
 - [ ] Flagged as "not legal advice; owner to review"; owner approval recorded
 
+**E2-S6 Consultant profiles content and photos** (DIG-54, owner requirement 2026-10-09)
+The owner supplies real consultant details for `/about`. Marketing edits the bios to the brand voice. Blocks E3-S9 (DIG-53) from closing.
+- [ ] Per consultant: real name, role, short bio, specialisms, optional LinkedIn URL
+- [ ] Professional photo per consultant, with written consent to publish recorded
+- [ ] Bios edited to brand voice and approved by the owner
+- [ ] Content handed to frontend for `src/content/consultants.ts`; no invented details
+
+**E2-S7 Generate and approve AI imagery** (DIG-55, optional)
+The owner generates photorealistic AI images from `docs/frontend/image-prompts.md`; frontend swaps them into the image slots. Relates to E3-S8 (DIG-52).
+- [ ] Images generated from the documented prompts; tool and licence or usage terms recorded
+- [ ] Owner approves each image before use
+- [ ] Images optimised (next/image) with alt text
+- [ ] No AI images of identifiable people presented as DigitizWork consultants
+
+**E2-T8 Owner content workbook (Excel) for site copy** (DIG-56, Done 2026-10-10)
+An Excel workbook the owner uses to supply real content. Each field has a Field ID mapped to src/content, current text, status (Placeholder / Draft / Confirmed), new content, an Action dropdown and notes. Each returned round is applied by the orchestrator, logged in the Change log tab and tracked by its own Jira issue.
+- [x] `docs/content/DigitizWork-Website-Content.xlsx` and generator `docs/content/build_content_xlsx.py` (python:3.12-slim container) exist
+- [x] 8 tabs: How to use, Site & Contact, Home page, About page, Consultants, Images, Discovery questions, Change log
+- [x] Covers every current content field (per orchestrator; not independently verified by PM)
+Evidence: PM check 2026-10-10: files present; tab names read from xl/workbook.xml.
+
+**E2-S9 Apply owner content workbook v2 to the site** (DIG-57; relates to DIG-13, DIG-19, DIG-54)
+- [ ] Every row with Action = "Replace with new content" or "Remove" is applied in src/content
+- [ ] Every "Approve current text" row has its [Placeholder] marker removed
+- [ ] A Change log row is added in the workbook referencing DIG-57
+- [ ] Screenshots are refreshed
+- [ ] QA re-checks the affected pages
+
 ---
 
 ## E3 Design System & Frontend (Epic DIG-5) (owner: frontend)
 
 | ID | Jira key | Type | Summary | Owner | Depends on | Sprint | Status |
 |---|---|---|---|---|---|---|---|
-| E3-S1 | DIG-22 | Story | Design system proposal | frontend | E1-T3 (Q6), E2-S1 | Sprint 1 | To Do |
-| E3-S2 | DIG-23 | Story | Extensible page shell, navigation and section architecture | frontend | E5-T1 | Sprint 1 | To Do |
+| E3-S1 | DIG-22 | Story | Design system proposal | frontend | E1-T3 (Q6), E2-S1 | Sprint 1 | In Progress (started 2026-10-09 with placeholder content and an unapproved brand direction; DIG-13 still open) |
+| E3-S2 | DIG-23 | Story | Extensible page shell, navigation and section architecture | frontend | E5-T1 | Sprint 1 | In Progress (started 2026-10-09, branch feature/DIG-22-DIG-23-ui-design) |
 | E3-S3 | DIG-24 | Story | Hero and Services sections | frontend | E2-S3, E3-S1, E3-S2 | Sprint 2 | To Do |
 | E3-S4 | DIG-25 | Story | About and Footer sections | frontend | E2-S3, E3-S1, E3-S2 | Sprint 2 | To Do |
 | E3-S5 | DIG-26 | Story | Contact section and accessible contact form UI | frontend | E2-S3, E4-S2, E3-S2 | Sprint 2 | To Do |
 | E3-S6 | DIG-27 | Story | Metadata, SEO files, favicon/OG image, 404 and privacy view | frontend | E2-S4, E2-S5, E1-T4 | Sprint 2 | To Do |
+| E3-S7 | DIG-51 | Story | UI design review: owner approval of visual direction | frontend, pm (decision: product-owner) | E3-S1, E3-S2, E3-S8, E3-S9 | Sprint 1 | To Do |
+| E3-S8 | DIG-52 | Story | AI-themed visual design and illustrations | frontend | E3-S1 | Sprint 1 | In Progress |
+| E3-S9 | DIG-53 | Story | About us page with consultants | frontend | E3-S2; E2-S6 to close | Sprint 1 | In Progress (placeholder cards) |
 
 **E3-S1 Design system proposal**
 Propose colour, typography, spacing, radius and component styles, using existing brand assets if the owner has them.
@@ -196,6 +234,32 @@ Implement metadata from the SEO strategy, `sitemap.ts`, `robots.ts`, JSON-LD, fa
 - [ ] JSON-LD validates and contains only confirmed facts
 - [ ] 404 page with link home
 - [ ] Privacy notice reachable from footer and form
+
+**E3-S7 UI design review: owner approval of visual direction** (added 2026-10-09 at owner request)
+The owner reviews the UI design screenshots and the live local build, then approves the visual direction or requests changes.
+- [ ] Screenshots for desktop and mobile are linked from DIG-22 and DIG-23
+- [ ] Owner decision (approve / request changes) recorded as a comment on DIG-51
+- [ ] Each change request becomes a new issue
+Blocked by: DIG-22, DIG-23, DIG-52, DIG-53.
+
+**E3-S8 AI-themed visual design and illustrations** (DIG-52, owner requirement 2026-10-09, In Progress)
+A visually rich design with AI-themed imagery conveying that DigitizWork can deliver any software solution using AI. Original SVG illustrations built in code (no image generator available), plus prompts so the owner can generate photorealistic images later (E2-S7).
+- [ ] Original SVG illustrations for the hero, services and process sections
+- [ ] Image slots swappable via content modules
+- [ ] `docs/frontend/image-prompts.md` with prompts for AI-generated photos
+- [ ] Alt text on all images (decorative images marked as such)
+- [ ] WCAG 2.2 AA contrast maintained
+- [ ] `prefers-reduced-motion` respected
+- [ ] Owner approves via DIG-51
+
+**E3-S9 About us page with consultants** (DIG-53, owner requirement 2026-10-09, In Progress)
+A separate `/about` page presenting the company's real consultants. Uses placeholder cards until E2-S6 delivers real profiles. Cannot close until E2-S6 (DIG-54) is done.
+- [ ] `/about` route with its own metadata (title, description, canonical, OG)
+- [ ] Consultant cards driven by `src/content/consultants.ts`
+- [ ] No invented names, bios or photos
+- [ ] Navigation links to `/about`
+- [ ] Responsive at 390 and 1440px
+- [ ] Screenshots linked on DIG-53
 
 ---
 
@@ -257,7 +321,7 @@ Unit tests for schema, route handler, adapters and abuse controls.
 | E5-T1 | DIG-34 | Task | Next.js 16 + TypeScript + Tailwind starter | orchestrator | none | Done | Done |
 | E5-T2 | DIG-35 | Task | Docker dev (:3000) and production image (:8080) | orchestrator | E5-T1 | Done | Done |
 | E5-T3 | DIG-36 | Task | Quality tooling and npm scripts (lint, test, e2e) | orchestrator | E5-T1 | Sprint 1 | To Do |
-| E5-T4 | DIG-37 | Task | Version control: git init and repository decision | orchestrator | E1-T4 (OQ-6) for remote | Sprint 1 | To Do |
+| E5-T4 | DIG-37 | Task | Version control: git init and repository decision | orchestrator | E1-T4 (OQ-6) for remote | Sprint 1 | Done (with gaps: CI not set up, remote decision not in decision log) |
 | E5-T5 | DIG-38 | Task | Environment and secrets handling in Docker | backend | E4-S3 | Sprint 2 | To Do |
 
 **E5-T1 Next.js 16 + TypeScript + Tailwind starter** (Done)
@@ -281,10 +345,11 @@ Add ESLint, Vitest, Playwright and @axe-core/playwright (versions pinned) and sc
 
 **E5-T4 Version control: git init and repository decision**
 The workspace is not a git repository. Initialise git locally; create a GitHub remote and CI only if the owner approves (OQ-6). Also correct the workspace path in the decision log (it says `/mnt/project-files/digitizwork-site`; the actual workspace is `C:\Users\prasa\Documents\digitizwork-site\digitizwork-site`).
-- [ ] `git init` with `.gitignore` covering `.env*`, `.next`, `node_modules`
-- [ ] Owner decision on GitHub remote recorded
-- [ ] If approved: CI runs lint, typecheck, test, build on pull requests
-- [ ] Decision log workspace entry corrected
+- [x] `git init` with `.gitignore` covering `.env*`, `.next`, `node_modules`
+- [ ] Owner decision on GitHub remote recorded (remote exists, so the decision was made, but it is not yet in decision-log.md)
+- [ ] If approved: CI runs lint, typecheck, test, build on pull requests (NOT done: no `.github/workflows`; needs a follow-up issue)
+- [x] Decision log workspace entry corrected
+Evidence (PM check, 2026-10-09): branches main and feature/DIG-22-DIG-23-ui-design; commits 3e9bd29, e1ea570, 060fd5f; origin = https://github.com/prasa7/digitizwork-website.git. The local origin/main ref is at e1ea570, so 060fd5f is not yet shown as pushed. Private visibility not verified by PM. Closed in Jira at the coordinator's request, with the gaps recorded in a comment on DIG-37.
 
 **E5-T5 Environment and secrets handling in Docker**
 Make env vars available to dev and prod containers without committing or baking secrets.
@@ -367,7 +432,7 @@ Make env vars available to dev and prod containers without committing or baking 
 | ID | Jira key | Type | Summary | Owner | Depends on | Sprint | Status |
 |---|---|---|---|---|---|---|---|
 | E8-S1 | DIG-48 | Story | Phase 2 sitemap and page content | marketing | E7-T2, owner material | Backlog | To Do |
-| E8-S2 | DIG-49 | Story | Split sections into routes (Services, Service detail, About, Contact, Terms) | frontend | E8-S1 | Backlog | To Do |
+| E8-S2 | DIG-49 | Story | Split sections into routes (Services, Service detail, Contact, Terms; About already delivered in Phase 1 by E3-S9 per D10) | frontend | E8-S1 | Backlog | To Do |
 | E8-S3 | DIG-50 | Story | Phase 2 QA regression and SEO update | qa | E8-S2 | Backlog | To Do |
 
 **E8-S1 Phase 2 sitemap and page content**

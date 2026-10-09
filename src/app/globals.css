@@ -1,1 +1,210 @@
 @import "tailwindcss";
+
+/*
+ * DigitizWork design tokens (DIG-22). PROPOSAL pending owner approval.
+ * Documented with contrast ratios in docs/frontend/design-system.md.
+ * Use these tokens (ink, brand, accent, danger, success) instead of raw Tailwind palettes.
+ */
+@theme {
+  /* Neutrals: cool slate-based ink scale */
+  --color-ink-50: #f7f9fc;
+  --color-ink-100: #eef2f7;
+  --color-ink-200: #e2e8f0;
+  --color-ink-300: #cbd5e1;
+  --color-ink-400: #7d8ba1;
+  --color-ink-500: #64748b;
+  --color-ink-600: #475569;
+  --color-ink-700: #334155;
+  --color-ink-800: #1e293b;
+  --color-ink-900: #111a2e;
+  --color-ink-950: #0a1222;
+
+  /* Brand: confident blue */
+  --color-brand-50: #eef3ff;
+  --color-brand-100: #dce6ff;
+  --color-brand-200: #bccdff;
+  --color-brand-300: #93afff;
+  --color-brand-400: #5f86f7;
+  --color-brand-500: #3a63ea;
+  --color-brand-600: #2449d6;
+  --color-brand-700: #1c39b0;
+  --color-brand-800: #1a318b;
+  --color-brand-900: #172a66;
+
+  /* Iris: violet partner to brand blue for AI gradients */
+  --color-iris-50: #f3f0ff;
+  --color-iris-100: #e6e0ff;
+  --color-iris-300: #b6a9ff;
+  --color-iris-400: #8b7cf6;
+  --color-iris-500: #7c5cf0;
+  --color-iris-600: #6d4ae0;
+  --color-iris-700: #5b3cc4;
+
+  /* Accent: teal, used for highlights and decorative detail */
+  --color-accent-50: #ecfdf8;
+  --color-accent-100: #d1faec;
+  --color-accent-300: #5eead4;
+  --color-accent-500: #14b8a6;
+  --color-accent-700: #0f766e;
+
+  /* Feedback */
+  --color-danger-50: #fef3f2;
+  --color-danger-700: #b42318;
+  --color-success-50: #ecfdf3;
+  --color-success-700: #067647;
+
+  /* Radius */
+  --radius-control: 0.625rem;
+  --radius-card: 1rem;
+  --radius-panel: 1.5rem;
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px rgb(10 18 34 / 0.04), 0 4px 16px -6px rgb(10 18 34 / 0.08);
+  --shadow-raised: 0 2px 4px rgb(10 18 34 / 0.04), 0 24px 48px -16px rgb(10 18 34 / 0.18);
+
+  /* Layout */
+  --container-site: 76rem;
+
+  /* Display size for the hero H1 on large screens */
+  --text-display: 3.75rem;
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.03em;
+
+  /* Motion */
+  --animate-menu-in: menu-in 160ms ease-out;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out -3s infinite;
+  --animate-glow: glow 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Font families come from next/font CSS variables set on <html> in layout.tsx */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply bg-white font-sans text-ink-700 antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight text-ink-950;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Anchored sections clear the sticky header */
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Lighter focus ring on dark surfaces */
+  .surface-dark :focus-visible {
+    outline-color: var(--color-brand-300);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Grid backdrop for dark hero surfaces */
+  .bg-grid-dark {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 75% 65% at 50% 30%, #000 30%, transparent 100%);
+  }
+
+  /* Grid backdrop for light surfaces */
+  .bg-grid-light {
+    background-image:
+      linear-gradient(to right, rgb(10 18 34 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(10 18 34 / 0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 100%);
+  }
+
+  /* Brand gradient text: every stop passes 4.5:1 on ink-950 (see design-system.md) */
+  .text-gradient-ai {
+    background-image: linear-gradient(100deg, var(--color-brand-300), var(--color-iris-300) 55%, var(--color-accent-300));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Gradient hairline border for glass cards on dark surfaces */
+  .border-gradient-ai {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--color-ink-900), var(--color-ink-900)) padding-box,
+      linear-gradient(135deg, rgb(147 175 255 / 0.55), rgb(182 169 255 / 0.2) 50%, rgb(94 234 212 / 0.45)) border-box;
+  }
+}
