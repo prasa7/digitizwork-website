@@ -1,0 +1,24 @@
+services:
+  # Development with hot reload: docker compose up
+  web:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      # File change detection for Windows bind mounts
+      WATCHPACK_POLLING: "true"
+
+  # Production build: docker compose --profile prod up web-prod
+  web-prod:
+    profiles: ["prod"]
+    build:
+      context: .
+      target: runner
+    ports:
+      - "8080:3000"
