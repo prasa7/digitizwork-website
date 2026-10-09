@@ -17,7 +17,14 @@ Jira is now the source of truth for status; this file keeps scope, acceptance cr
 - Added 2026-10-10: DIG-56 (E2-T8, Done) and DIG-57 (E2-S9). DIG-57 relates to DIG-13, DIG-19 and DIG-54.
 - Pre-existing DIG-1 and DIG-2 (Jira sample tasks) were left untouched. The SCRUM project was not touched.
 
-Status values: Done, In Progress, To Do, Blocked. In Progress as of 2026-10-10: DIG-22, DIG-23, DIG-51, DIG-52, DIG-53.
+Status values: Done, In Progress, To Do, Blocked. In Progress as of 2026-10-10: DIG-22, DIG-23, DIG-47, DIG-51, DIG-52, DIG-53, DIG-58.
+
+Deployment (D11, D12; 2026-10-10):
+- CI/CD workflow committed in 4b7f6d7 (DIG-58). It runs typecheck on PRs and pushes; on main it builds the image, pushes it to GHCR and deploys over SSH to EC2.
+- main includes the design work, deployed before owner approval of DIG-51.
+- The Actions run result is not yet verified.
+- The deploy job is skipped until the owner launches EC2 and sets EC2_HOST, EC2_USER and EC2_SSH_KEY.
+- DIG-47 covers a public preview only. QA, DIG-45 and the hosting proposal were skipped for the preview (R20 to R23).
 
 UI design delivered 2026-10-10 in commit a77bd4f (branch feature/DIG-22-DIG-23-ui-design, pushed). Screenshots, design-system.md, components.md and image-prompts.md are linked from the DIG-22, DIG-23, DIG-52 and DIG-53 comments. Verification:
 - Frontend reports tsc exit 0, production build exit 0, and passing Playwright smoke checks.
@@ -33,11 +40,11 @@ The owner review is in progress on DIG-51. Owner approval there is the remaining
 | E2 Brand & Content | 9 | 1 | 2 | 6 | 0 | 0 |
 | E3 Design System & Frontend | 9 | 0 | 5 | 4 | 0 | 0 |
 | E4 Contact Form & Backend | 6 | 0 | 1 | 5 | 0 | 0 |
-| E5 Local Dev & DevOps (Docker) | 5 | 3 | 1 | 1 | 0 | 0 |
+| E5 Local Dev & DevOps (Docker) | 6 | 3 | 2 | 1 | 0 | 0 |
 | E6 QA & Accessibility | 5 | 0 | 1 | 1 | 3 | 0 |
 | E7 Launch | 4 | 0 | 0 | 0 | 4 | 0 |
 | E8 Phase 2 Multi-page Expansion | 3 | 0 | 0 | 0 | 0 | 3 |
-| Total | 47 | 7 | 13 | 17 | 7 | 3 |
+| Total | 48 | 7 | 14 | 17 | 7 | 3 |
 
 (Done items are counted in "Done" only, not in a sprint column.)
 
@@ -329,6 +336,7 @@ Unit tests for schema, route handler, adapters and abuse controls.
 | E5-T3 | DIG-36 | Task | Quality tooling and npm scripts (lint, test, e2e) | orchestrator | E5-T1 | Sprint 1 | To Do |
 | E5-T4 | DIG-37 | Task | Version control: git init and repository decision | orchestrator | E1-T4 (OQ-6) for remote | Sprint 1 | Done (with gaps: CI not set up, remote decision not in decision log) |
 | E5-T5 | DIG-38 | Task | Environment and secrets handling in Docker | backend | E4-S3 | Sprint 2 | To Do |
+| E5-S6 | DIG-58 | Story | CI/CD pipeline: GitHub Actions to AWS EC2 | orchestrator | owner EC2 setup and GitHub variables/secret | Sprint 1 | In Progress (workflow committed 4b7f6d7; Actions run not yet verified; EC2 not launched) |
 
 **E5-T1 Next.js 16 + TypeScript + Tailwind starter** (Done)
 - [x] `package.json` pins next 16.4.0, react 19.3.0, typescript 5.9.3, tailwindcss 4.3.3
@@ -409,7 +417,7 @@ Make env vars available to dev and prod containers without committing or baking 
 | E7-T1 | DIG-44 | Task | Fix Critical/High defects and re-test | frontend, backend (per defect), qa (re-test) | E6-S5 | Sprint 3 | To Do |
 | E7-T2 | DIG-45 | Task | Release readiness review (go / no-go) | pm | E7-T1, E6-S5 | Sprint 3 | To Do |
 | E7-T3 | DIG-46 | Task | Hosting, domain and email provider proposal for approval | orchestrator | E1-T4 (OQ-8), E7-T2 | Sprint 3 | To Do |
-| E7-T4 | DIG-47 | Task | Production deployment (only with owner approval) | orchestrator | E7-T3 approved | Sprint 3 | Blocked (needs approval) |
+| E7-T4 | DIG-47 | Task | Production deployment (only with owner approval) | orchestrator | E7-T3 approved; E5-S6 (DIG-58) | Sprint 3 | In Progress: public preview on EC2 approved 2026-10-10 (D11). Not the QA-gated launch |
 
 **E7-T1 Fix Critical/High defects and re-test**
 - [ ] Every Critical/High defect from E6-S5 fixed by its owner

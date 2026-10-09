@@ -10,7 +10,7 @@ Workflow: [.github/workflows/deploy.yml](../../.github/workflows/deploy.yml). Se
 |---|---|---|
 | Typecheck | every push and PR to `main` | `npm ci`, `npm run typecheck` |
 | Build and push image | push to `main`, manual run | Builds the `runner` stage of the Dockerfile, pushes `ghcr.io/prasa7/digitizwork-website:<short-sha>` |
-| Deploy to EC2 | push to `main`, manual run, only when `EC2_HOST` is set | Copies the script over SSH, installs Docker if missing, pulls the image, restarts the `digitizwork-web` container, checks `http://EC2_HOST/` returns 200 |
+| Deploy to EC2 | push to `main`, manual run | Copies the script over SSH, installs Docker if missing, pulls the image, restarts the `digitizwork-web` container, checks `http://EC2_HOST/` returns 200 |
 
 The image is built on GitHub's runners, so the t3.micro server never runs a build.
 
@@ -27,8 +27,8 @@ Inbound rules on the instance's security group:
 
 Recommended: attach an Elastic IP so the address does not change when the instance stops and starts.
 
-### GitHub repository settings
-Settings → Secrets and variables → Actions:
+### GitHub environment settings
+Settings → Environments → `EC2_HOST` (the deploy job runs in this environment):
 
 | Kind | Name | Value |
 |---|---|---|
@@ -49,7 +49,7 @@ Re-run an earlier successful workflow run (Actions → run → "Re-run all jobs"
 ## Troubleshooting
 | Symptom | Likely cause |
 |---|---|
-| Deploy job skipped | `EC2_HOST` variable not set |
+| "EC2_HOST variable is not set" | Values must be in the `EC2_HOST` environment (Settings → Environments), not elsewhere |
 | `ssh: connect to host ... timed out` | Port 22 not open to `0.0.0.0/0`, or wrong `EC2_HOST` |
 | `Permission denied (publickey)` | `EC2_SSH_KEY` is not the instance's key, or `EC2_USER` is not `ubuntu` |
 | `denied` when pulling the image | The workflow token lacks package access: Package settings → Manage Actions access → add this repository (read) |

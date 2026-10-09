@@ -13,11 +13,11 @@ Last updated: 2026-10-10 (PM agent). Sprints are not yet created on the board: t
 | E2 Brand & Content | DIG-4 | 7 (DIG-17 to DIG-21, DIG-54, DIG-55) | 0 | Waiting on DIG-13; DIG-54 needs owner consultant profiles |
 | E3 Design System & Frontend | DIG-5 | 9 (DIG-22 to DIG-27, DIG-51 to DIG-53) | 0 | DIG-22 and DIG-23 In Progress (placeholder content, unapproved brand direction); DIG-51 owner UI review next |
 | E4 Contact Form & Backend | DIG-6 | 6 (DIG-28 to DIG-33) | 0 | DIG-28 draft contract can start now |
-| E5 Local Dev & DevOps (Docker) | DIG-7 | 5 (DIG-34 to DIG-38) | 3 | DIG-37 Done (CI gap open); DIG-36 tooling can start now |
+| E5 Local Dev & DevOps (Docker) | DIG-7 | 6 (DIG-34 to DIG-38, DIG-58) | 3 | DIG-58 CI/CD In Progress (typecheck-only CI, EC2 deploy waiting on owner setup); DIG-36 lint/tests still needed |
 | E6 QA & Accessibility | DIG-8 | 5 (DIG-39 to DIG-43) | 0 | DIG-39 draft test plan can start now |
-| E7 Launch | DIG-9 | 4 (DIG-44 to DIG-47) | 0 | Sprint 3; DIG-47 needs owner approval |
+| E7 Launch | DIG-9 | 4 (DIG-44 to DIG-47) | 0 | DIG-47 In Progress as an EC2 public preview (owner approved 2026-10-10), blocked by DIG-58; QA-gated launch still Sprint 3 |
 | E8 Phase 2 Multi-page Expansion | DIG-10 | 3 (DIG-48 to DIG-50) | 0 | Backlog |
-| Total | | 45 | 6 | |
+| Total | | 48 | 7 | |
 
 ## In Progress
 
@@ -27,6 +27,8 @@ Last updated: 2026-10-10 (PM agent). Sprints are not yet created on the board: t
 | E3-S2 | DIG-23 | Page shell and navigation | Started 2026-10-09, same branch |
 | E3-S8 | DIG-52 | AI-themed visual design and SVG illustrations | Started 2026-10-09, same branch |
 | E3-S9 | DIG-53 | About us page with consultants | Started 2026-10-09, same branch; placeholder cards; cannot close before DIG-54 |
+| E5-S6 | DIG-58 | CI/CD pipeline to AWS EC2 | Workflow committed 4b7f6d7. Owner to launch EC2, open SSH, and set EC2_HOST / EC2_USER / EC2_SSH_KEY. Actions run result not yet verified |
+| E7-T4 | DIG-47 | EC2 public preview | Owner approved 2026-10-10; placeholder content, form not wired |
 | E3-S7 | DIG-51 | UI design review | Owner reviewing since 2026-10-10. Decisions needed: visual direction, services / How we work / Why us, SVG or AI images, consultant details, domain and privacy format |
 
 UI design delivered 2026-10-10 in commit a77bd4f, which is pushed. Deliverables:

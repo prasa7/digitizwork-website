@@ -60,11 +60,12 @@ jobs:
   deploy:
     name: Deploy to EC2
     needs: image
-    # Skipped until the EC2_HOST repository variable is set (see docs/deployment/aws-ec2.md).
-    if: github.ref == 'refs/heads/main' && vars.EC2_HOST != ''
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    # EC2_HOST, EC2_USER (variables) and EC2_SSH_KEY (secret) live in this GitHub environment.
+    # Environment values are not visible to a job-level `if`, so they are checked in the first step.
     environment:
-      name: production
+      name: EC2_HOST
       url: http://${{ vars.EC2_HOST }}
     permissions:
       contents: read
@@ -73,13 +74,20 @@ jobs:
       HOST: ${{ vars.EC2_HOST }}
       USER: ${{ vars.EC2_USER || 'ubuntu' }}
     steps:
+      - name: Check deployment settings
+        env:
+          HAS_KEY: ${{ secrets.EC2_SSH_KEY != '' }}
+        run: |
+          [ -n "$HOST" ] || { echo "::error::EC2_HOST variable is not set in the EC2_HOST environment"; exit 1; }
+          [ "$HAS_KEY" = "true" ] || { echo "::error::EC2_SSH_KEY secret is not set in the EC2_HOST environment"; exit 1; }
       - uses: actions/checkout@v4
       - name: Configure SSH
         run: |
           install -m 700 -d ~/.ssh
           echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ec2.pem
           chmod 600 ~/.ssh/ec2.pem
-          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
+          ssh-keyscan -T 15 -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          grep -q . ~/.ssh/known_hosts || { echo "::error::Cannot reach $HOST on port 22. Check the security group allows SSH from 0.0.0.0/0 and the instance is running."; exit 1; }
       - name: Deploy
         run: |
           scp -i ~/.ssh/ec2.pem scripts/deploy/remote-deploy.sh "$USER@$HOST:/tmp/remote-deploy.sh"
