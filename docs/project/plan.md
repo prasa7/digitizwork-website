@@ -1,16 +1,18 @@
 # DigitizWork website: Jira-ready plan
 
 Prepared by: PM agent, 2026-10-09. Scope: [project-brief.md](project-brief.md).
-Jira status: NOT created. Waiting for the owner's new Jira project key. The "Jira key" column is intentionally empty.
+Jira: created 2026-10-09 in project **DIG** (Digitizwork, team-managed Scrum). Board: https://digitizwork.atlassian.net/jira/software/projects/DIG/boards
+Jira is now the source of truth for status; this file keeps scope, acceptance criteria and the ID-to-key mapping.
 
-## How to load into Jira
+## How it was loaded into Jira (E1-T5, DIG-15)
 
-- Create one Epic per section below (Epic name = section title). Then create each item as the listed issue type, linked to its Epic.
-- Labels: `owner:marketing`, `owner:frontend`, `owner:backend`, `owner:qa`, `owner:pm`, `owner:orchestrator`, `owner:product-owner`. Add `phase-1` or `phase-2`.
-- Description: the item's description paragraph. Acceptance criteria: the checklist (paste as a Jira checklist or in the description under "Acceptance criteria").
-- Dependencies: create "is blocked by" links using the IDs in "Depends on" once Jira keys exist, then fill the Jira key column here.
-- Sprints: Sprint 1 = discovery and definition; Sprint 2 = build; Sprint 3 = verification and launch readiness; Backlog = Phase 2. Sprint length is not set (owner decision); suggest 1 week each.
-- Done items: create directly in Done status with the evidence in a comment.
+- 8 Epics: DIG-3 (E1) to DIG-10 (E8). 40 child issues DIG-11 to DIG-50, each with its parent set to its epic.
+- Labels: owner (`marketing`, `frontend`, `backend`, `qa`, `pm`, `orchestrator`, `product-owner`), sprint (`sprint-1`, `sprint-2`, `sprint-3`, `backlog`), phase (`phase-1`, `phase-2`), and `blocked` on DIG-13 and DIG-47 (the workflow has no Blocked status). The 4 items done before planning carry `sprint-1`.
+- Description: plan ID, owner and dependencies at the top, then the description and acceptance criteria (as a bullet list; met criteria prefixed MET).
+- Dependencies: 69 "Blocks" links matching the Depends on column (non-issue dependencies such as "owner Jira key" are not links).
+- Done items DIG-11, DIG-12, DIG-34, DIG-35 transitioned to Done with evidence in the description. DIG-15 (this load) transitioned to Done after verification.
+- Sprints are NOT created (not possible with the available tools). The owner creates Sprint 1 to 3 on the board and moves issues by sprint label.
+- Pre-existing DIG-1 and DIG-2 (Jira sample tasks) were left untouched. The SCRUM project was not touched.
 
 Status values: Done, To Do, Blocked. Nothing is In Progress at the time of writing.
 
@@ -18,7 +20,7 @@ Status values: Done, To Do, Blocked. Nothing is In Progress at the time of writi
 
 | Epic | Items | Done | Sprint 1 | Sprint 2 | Sprint 3 | Backlog |
 |---|---|---|---|---|---|---|
-| E1 Discovery & Planning | 6 | 2 | 4 | 0 | 0 | 0 |
+| E1 Discovery & Planning | 6 | 3 | 3 | 0 | 0 | 0 |
 | E2 Brand & Content | 5 | 0 | 2 | 3 | 0 | 0 |
 | E3 Design System & Frontend | 6 | 0 | 2 | 4 | 0 | 0 |
 | E4 Contact Form & Backend | 6 | 0 | 1 | 5 | 0 | 0 |
@@ -26,7 +28,7 @@ Status values: Done, To Do, Blocked. Nothing is In Progress at the time of writi
 | E6 QA & Accessibility | 5 | 0 | 1 | 1 | 3 | 0 |
 | E7 Launch | 4 | 0 | 0 | 0 | 4 | 0 |
 | E8 Phase 2 Multi-page Expansion | 3 | 0 | 0 | 0 | 0 | 3 |
-| Total | 40 | 4 | 12 | 14 | 7 | 3 |
+| Total | 40 | 5 | 11 | 14 | 7 | 3 |
 
 (Done items are counted in "Done" only, not in a sprint column.)
 
@@ -34,20 +36,20 @@ Status values: Done, To Do, Blocked. Nothing is In Progress at the time of writi
 
 E1-T3 owner discovery answers -> E2-S1 positioning -> E2-S3 copy -> E3-S3/E3-S4 sections -> E6-S2..S4 testing -> E7-T1 fixes -> E7-T2 release readiness.
 
-Work that can start before discovery answers arrive: E1-T5 (once key is given), E3-S2 (page shell and section architecture with placeholder content), E4-S1 (draft API contract from kickoff form fields), E5-T3 (quality tooling), E5-T4 (git init), E6-S1 (draft test plan).
+Work that can start before discovery answers arrive: E3-S2 (page shell and section architecture with placeholder content), E4-S1 (draft API contract from kickoff form fields), E5-T3 (quality tooling), E5-T4 (git init), E6-S1 (draft test plan).
 
 ---
 
-## E1 Discovery & Planning
+## E1 Discovery & Planning (Epic DIG-3)
 
 | ID | Jira key | Type | Summary | Owner | Depends on | Sprint | Status |
 |---|---|---|---|---|---|---|---|
-| E1-T1 | | Task | Create agent team definitions | orchestrator | none | Done | Done |
-| E1-T2 | | Task | Project brief and Jira-ready plan | pm | E1-T1 | Done | Done |
-| E1-T3 | | Task | Owner answers discovery questions | product-owner | E1-T1 | Sprint 1 | Blocked (waiting on owner) |
-| E1-T4 | | Task | Owner confirms assumptions and launch decisions | product-owner | E1-T3 | Sprint 1 | To Do |
-| E1-T5 | | Task | Create Jira project backlog from this plan | pm | E1-T2, owner Jira key | Sprint 1 | Blocked (no Jira key) |
-| E1-T6 | | Task | Approve implementation plan (build gate) | product-owner | E2-S2, E3-S1, E4-S1, E6-S1 | Sprint 1 | To Do |
+| E1-T1 | DIG-11 | Task | Create agent team definitions | orchestrator | none | Done | Done |
+| E1-T2 | DIG-12 | Task | Project brief and Jira-ready plan | pm | E1-T1 | Done | Done |
+| E1-T3 | DIG-13 | Task | Owner answers discovery questions | product-owner | E1-T1 | Sprint 1 | Blocked (waiting on owner) |
+| E1-T4 | DIG-14 | Task | Owner confirms assumptions and launch decisions | product-owner | E1-T3 | Sprint 1 | To Do |
+| E1-T5 | DIG-15 | Task | Create Jira project backlog from this plan | pm | E1-T2, owner Jira key | Done | Done |
+| E1-T6 | DIG-16 | Task | Approve implementation plan (build gate) | product-owner | E2-S2, E3-S1, E4-S1, E6-S1 | Sprint 1 | To Do |
 
 **E1-T1 Create agent team definitions** (Done)
 Define the marketing, frontend, backend, QA and PM subagents with path-based ownership and integrity rules.
@@ -78,12 +80,13 @@ Confirm or override kickoff assumptions A1 to A8 and brief open questions OQ-3 t
 - [ ] Email delivery approach for launch decided (OQ-4)
 - [ ] Phase 1 "launch" definition decided: local production build only, or public deployment after approval (OQ-8)
 
-**E1-T5 Create Jira project backlog from this plan** (Blocked)
-Once the owner gives the Jira project key, create epics, issues, labels and dependency links, then record keys in this file.
-- [ ] 8 epics and all items created with type, labels, description, acceptance criteria, sprint
-- [ ] "Is blocked by" links match the Depends on column
-- [ ] Done items created in Done with evidence comments
-- [ ] Jira key column in this file filled in
+**E1-T5 Create Jira project backlog from this plan** (Done)
+Create epics, issues, labels and dependency links in Jira project DIG, then record keys in this file.
+- [x] 8 epics and all items created with type, labels, description, acceptance criteria, sprint label
+- [x] "Blocks" links match the Depends on column (69 links)
+- [x] Done items transitioned to Done with evidence
+- [x] Jira key column in this file filled in
+Evidence: JQL `project = DIG AND key >= DIG-3` on 2026-10-09 returned 48 issues; all 40 children have the correct epic parent; DIG-11, 12, 15, 34, 35 in Done; 69 distinct Blocks links.
 
 **E1-T6 Approve implementation plan (build gate)**
 The owner reviews the section map, design system proposal, API contract and test plan before Sprint 2 build begins.
@@ -92,15 +95,15 @@ The owner reviews the section map, design system proposal, API contract and test
 
 ---
 
-## E2 Brand & Content (owner: marketing)
+## E2 Brand & Content (Epic DIG-4) (owner: marketing)
 
 | ID | Jira key | Type | Summary | Owner | Depends on | Sprint | Status |
 |---|---|---|---|---|---|---|---|
-| E2-S1 | | Story | Positioning, audience and brand voice | marketing | E1-T3 | Sprint 1 | To Do |
-| E2-S2 | | Story | Single-page section map and Phase 2 sitemap | marketing | E2-S1 | Sprint 1 | To Do |
-| E2-S3 | | Story | Copy for all single-page sections | marketing | E2-S2, E1-T4 | Sprint 2 | To Do |
-| E2-S4 | | Story | SEO strategy for the single page | marketing | E2-S1 | Sprint 2 | To Do |
-| E2-S5 | | Story | Privacy notice content for form data | marketing | E1-T3 (Q5, Q10), E1-T4 (OQ-3), E4-S1 | Sprint 2 | To Do |
+| E2-S1 | DIG-17 | Story | Positioning, audience and brand voice | marketing | E1-T3 | Sprint 1 | To Do |
+| E2-S2 | DIG-18 | Story | Single-page section map and Phase 2 sitemap | marketing | E2-S1 | Sprint 1 | To Do |
+| E2-S3 | DIG-19 | Story | Copy for all single-page sections | marketing | E2-S2, E1-T4 | Sprint 2 | To Do |
+| E2-S4 | DIG-20 | Story | SEO strategy for the single page | marketing | E2-S1 | Sprint 2 | To Do |
+| E2-S5 | DIG-21 | Story | Privacy notice content for form data | marketing | E1-T3 (Q5, Q10), E1-T4 (OQ-3), E4-S1 | Sprint 2 | To Do |
 
 **E2-S1 Positioning, audience and brand voice**
 Turn the owner's discovery answers into positioning, audience definition, value proposition and voice guidelines.
@@ -137,16 +140,16 @@ Draft the privacy notice covering what the contact form collects, why, retention
 
 ---
 
-## E3 Design System & Frontend (owner: frontend)
+## E3 Design System & Frontend (Epic DIG-5) (owner: frontend)
 
 | ID | Jira key | Type | Summary | Owner | Depends on | Sprint | Status |
 |---|---|---|---|---|---|---|---|
-| E3-S1 | | Story | Design system proposal | frontend | E1-T3 (Q6), E2-S1 | Sprint 1 | To Do |
-| E3-S2 | | Story | Extensible page shell, navigation and section architecture | frontend | E5-T1 | Sprint 1 | To Do |
-| E3-S3 | | Story | Hero and Services sections | frontend | E2-S3, E3-S1, E3-S2 | Sprint 2 | To Do |
-| E3-S4 | | Story | About and Footer sections | frontend | E2-S3, E3-S1, E3-S2 | Sprint 2 | To Do |
-| E3-S5 | | Story | Contact section and accessible contact form UI | frontend | E2-S3, E4-S2, E3-S2 | Sprint 2 | To Do |
-| E3-S6 | | Story | Metadata, SEO files, favicon/OG image, 404 and privacy view | frontend | E2-S4, E2-S5, E1-T4 | Sprint 2 | To Do |
+| E3-S1 | DIG-22 | Story | Design system proposal | frontend | E1-T3 (Q6), E2-S1 | Sprint 1 | To Do |
+| E3-S2 | DIG-23 | Story | Extensible page shell, navigation and section architecture | frontend | E5-T1 | Sprint 1 | To Do |
+| E3-S3 | DIG-24 | Story | Hero and Services sections | frontend | E2-S3, E3-S1, E3-S2 | Sprint 2 | To Do |
+| E3-S4 | DIG-25 | Story | About and Footer sections | frontend | E2-S3, E3-S1, E3-S2 | Sprint 2 | To Do |
+| E3-S5 | DIG-26 | Story | Contact section and accessible contact form UI | frontend | E2-S3, E4-S2, E3-S2 | Sprint 2 | To Do |
+| E3-S6 | DIG-27 | Story | Metadata, SEO files, favicon/OG image, 404 and privacy view | frontend | E2-S4, E2-S5, E1-T4 | Sprint 2 | To Do |
 
 **E3-S1 Design system proposal**
 Propose colour, typography, spacing, radius and component styles, using existing brand assets if the owner has them.
@@ -196,16 +199,16 @@ Implement metadata from the SEO strategy, `sitemap.ts`, `robots.ts`, JSON-LD, fa
 
 ---
 
-## E4 Contact Form & Backend (owner: backend)
+## E4 Contact Form & Backend (Epic DIG-6) (owner: backend)
 
 | ID | Jira key | Type | Summary | Owner | Depends on | Sprint | Status |
 |---|---|---|---|---|---|---|---|
-| E4-S1 | | Story | Backend design and contact API contract | backend | E1-T1 (draft), E1-T3 Q5 (final) | Sprint 1 | To Do |
-| E4-S2 | | Story | Contact API endpoint with shared validation | backend | E4-S1 | Sprint 2 | To Do |
-| E4-S3 | | Story | Email delivery adapter and environment validation | backend | E4-S2, E1-T4 (OQ-4) | Sprint 2 | To Do |
-| E4-S4 | | Story | Abuse protection: honeypot, fill time, rate limit | backend | E4-S2 | Sprint 2 | To Do |
-| E4-S5 | | Story | Security headers and CSP | backend | E3-S2 | Sprint 2 | To Do |
-| E4-S6 | | Task | Backend unit tests (Vitest) | backend | E4-S2, E4-S3, E4-S4, E5-T3 | Sprint 2 | To Do |
+| E4-S1 | DIG-28 | Story | Backend design and contact API contract | backend | E1-T1 (draft), E1-T3 Q5 (final) | Sprint 1 | To Do |
+| E4-S2 | DIG-29 | Story | Contact API endpoint with shared validation | backend | E4-S1 | Sprint 2 | To Do |
+| E4-S3 | DIG-30 | Story | Email delivery adapter and environment validation | backend | E4-S2, E1-T4 (OQ-4) | Sprint 2 | To Do |
+| E4-S4 | DIG-31 | Story | Abuse protection: honeypot, fill time, rate limit | backend | E4-S2 | Sprint 2 | To Do |
+| E4-S5 | DIG-32 | Story | Security headers and CSP | backend | E3-S2 | Sprint 2 | To Do |
+| E4-S6 | DIG-33 | Task | Backend unit tests (Vitest) | backend | E4-S2, E4-S3, E4-S4, E5-T3 | Sprint 2 | To Do |
 
 **E4-S1 Backend design and contact API contract**
 Document the contact flow: fields, validation rules, request/response format, error codes, email adapter interface, spam controls, logging policy (no PII), environment variables.
@@ -247,15 +250,15 @@ Unit tests for schema, route handler, adapters and abuse controls.
 
 ---
 
-## E5 Local Dev & DevOps (Docker) (owner: orchestrator unless stated)
+## E5 Local Dev & DevOps (Docker) (Epic DIG-7) (owner: orchestrator unless stated)
 
 | ID | Jira key | Type | Summary | Owner | Depends on | Sprint | Status |
 |---|---|---|---|---|---|---|---|
-| E5-T1 | | Task | Next.js 16 + TypeScript + Tailwind starter | orchestrator | none | Done | Done |
-| E5-T2 | | Task | Docker dev (:3000) and production image (:8080) | orchestrator | E5-T1 | Done | Done |
-| E5-T3 | | Task | Quality tooling and npm scripts (lint, test, e2e) | orchestrator | E5-T1 | Sprint 1 | To Do |
-| E5-T4 | | Task | Version control: git init and repository decision | orchestrator | E1-T4 (OQ-6) for remote | Sprint 1 | To Do |
-| E5-T5 | | Task | Environment and secrets handling in Docker | backend | E4-S3 | Sprint 2 | To Do |
+| E5-T1 | DIG-34 | Task | Next.js 16 + TypeScript + Tailwind starter | orchestrator | none | Done | Done |
+| E5-T2 | DIG-35 | Task | Docker dev (:3000) and production image (:8080) | orchestrator | E5-T1 | Done | Done |
+| E5-T3 | DIG-36 | Task | Quality tooling and npm scripts (lint, test, e2e) | orchestrator | E5-T1 | Sprint 1 | To Do |
+| E5-T4 | DIG-37 | Task | Version control: git init and repository decision | orchestrator | E1-T4 (OQ-6) for remote | Sprint 1 | To Do |
+| E5-T5 | DIG-38 | Task | Environment and secrets handling in Docker | backend | E4-S3 | Sprint 2 | To Do |
 
 **E5-T1 Next.js 16 + TypeScript + Tailwind starter** (Done)
 - [x] `package.json` pins next 16.4.0, react 19.3.0, typescript 5.9.3, tailwindcss 4.3.3
@@ -291,15 +294,15 @@ Make env vars available to dev and prod containers without committing or baking 
 
 ---
 
-## E6 QA & Accessibility (owner: qa)
+## E6 QA & Accessibility (Epic DIG-8) (owner: qa)
 
 | ID | Jira key | Type | Summary | Owner | Depends on | Sprint | Status |
 |---|---|---|---|---|---|---|---|
-| E6-S1 | | Story | Test plan and acceptance criteria | qa | E2-S2, E4-S1 (drafts) | Sprint 1 | To Do |
-| E6-S2 | | Story | Playwright E2E suite (navigation and contact form) | qa | E5-T3, E3-S2, E4-S2 | Sprint 2 | To Do |
-| E6-S3 | | Story | Accessibility testing (axe and manual keyboard) | qa | E3-S3, E3-S4, E3-S5, E3-S6 | Sprint 3 | To Do |
-| E6-S4 | | Story | SEO, responsive and performance checks | qa | E3-S6, E2-S4 | Sprint 3 | To Do |
-| E6-S5 | | Story | Test report, defect triage and release checklist | qa | E6-S2, E6-S3, E6-S4 | Sprint 3 | To Do |
+| E6-S1 | DIG-39 | Story | Test plan and acceptance criteria | qa | E2-S2, E4-S1 (drafts) | Sprint 1 | To Do |
+| E6-S2 | DIG-40 | Story | Playwright E2E suite (navigation and contact form) | qa | E5-T3, E3-S2, E4-S2 | Sprint 2 | To Do |
+| E6-S3 | DIG-41 | Story | Accessibility testing (axe and manual keyboard) | qa | E3-S3, E3-S4, E3-S5, E3-S6 | Sprint 3 | To Do |
+| E6-S4 | DIG-42 | Story | SEO, responsive and performance checks | qa | E3-S6, E2-S4 | Sprint 3 | To Do |
+| E6-S5 | DIG-43 | Story | Test report, defect triage and release checklist | qa | E6-S2, E6-S3, E6-S4 | Sprint 3 | To Do |
 
 **E6-S1 Test plan and acceptance criteria**
 - [ ] `docs/qa/test-plan.md` maps every success criterion in the brief to tests
@@ -328,14 +331,14 @@ Make env vars available to dev and prod containers without committing or baking 
 
 ---
 
-## E7 Launch
+## E7 Launch (Epic DIG-9)
 
 | ID | Jira key | Type | Summary | Owner | Depends on | Sprint | Status |
 |---|---|---|---|---|---|---|---|
-| E7-T1 | | Task | Fix Critical/High defects and re-test | frontend, backend (per defect), qa (re-test) | E6-S5 | Sprint 3 | To Do |
-| E7-T2 | | Task | Release readiness review (go / no-go) | pm | E7-T1, E6-S5 | Sprint 3 | To Do |
-| E7-T3 | | Task | Hosting, domain and email provider proposal for approval | orchestrator | E1-T4 (OQ-8), E7-T2 | Sprint 3 | To Do |
-| E7-T4 | | Task | Production deployment (only with owner approval) | orchestrator | E7-T3 approved | Sprint 3 | Blocked (needs approval) |
+| E7-T1 | DIG-44 | Task | Fix Critical/High defects and re-test | frontend, backend (per defect), qa (re-test) | E6-S5 | Sprint 3 | To Do |
+| E7-T2 | DIG-45 | Task | Release readiness review (go / no-go) | pm | E7-T1, E6-S5 | Sprint 3 | To Do |
+| E7-T3 | DIG-46 | Task | Hosting, domain and email provider proposal for approval | orchestrator | E1-T4 (OQ-8), E7-T2 | Sprint 3 | To Do |
+| E7-T4 | DIG-47 | Task | Production deployment (only with owner approval) | orchestrator | E7-T3 approved | Sprint 3 | Blocked (needs approval) |
 
 **E7-T1 Fix Critical/High defects and re-test**
 - [ ] Every Critical/High defect from E6-S5 fixed by its owner
@@ -359,13 +362,13 @@ Make env vars available to dev and prod containers without committing or baking 
 
 ---
 
-## E8 Phase 2 Multi-page Expansion (Backlog)
+## E8 Phase 2 Multi-page Expansion (Epic DIG-10) (Backlog)
 
 | ID | Jira key | Type | Summary | Owner | Depends on | Sprint | Status |
 |---|---|---|---|---|---|---|---|
-| E8-S1 | | Story | Phase 2 sitemap and page content | marketing | E7-T2, owner material | Backlog | To Do |
-| E8-S2 | | Story | Split sections into routes (Services, Service detail, About, Contact, Terms) | frontend | E8-S1 | Backlog | To Do |
-| E8-S3 | | Story | Phase 2 QA regression and SEO update | qa | E8-S2 | Backlog | To Do |
+| E8-S1 | DIG-48 | Story | Phase 2 sitemap and page content | marketing | E7-T2, owner material | Backlog | To Do |
+| E8-S2 | DIG-49 | Story | Split sections into routes (Services, Service detail, About, Contact, Terms) | frontend | E8-S1 | Backlog | To Do |
+| E8-S3 | DIG-50 | Story | Phase 2 QA regression and SEO update | qa | E8-S2 | Backlog | To Do |
 
 **E8-S1 Phase 2 sitemap and page content**
 Based on kickoff section 5. Case studies, blog, careers and industries only when real material exists.

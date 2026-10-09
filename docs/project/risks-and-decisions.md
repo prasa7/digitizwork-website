@@ -19,7 +19,7 @@ Likelihood and impact: Low / Medium / High.
 | R8 | In-memory rate limiter is per instance and resets on restart; insufficient if deployed to serverless or multiple instances | Low (local) / Medium (deployed) | Medium | Document limitation; Turnstile or managed store only with approval, revisit at E7-T3 | backend | E4-S4, E7-T3 | Open |
 | R9 | Privacy obligations unclear until jurisdiction is known (Q10); form collects personal data | Medium | High | Privacy notice task depends on Q10; flagged "not legal advice"; owner review required | marketing / product-owner | E2-S5 | Open |
 | R10 | Lighthouse 90+ or WCAG 2.2 AA not met late in the cycle | Medium | Medium | Static rendering, minimal client JS, contrast checked in design system; a11y checks during build, not only in Sprint 3 | frontend / qa | E3-S1, E6-S3, E6-S4 | Open |
-| R11 | Jira project not yet created; plan and Jira may drift once both exist | Medium | Low | Create from plan.md in one pass; record keys in plan.md; Jira becomes source of truth for status afterwards | pm | E1-T5 | Open |
+| R11 | Jira project not yet created; plan and Jira may drift once both exist | Medium | Low | Created from plan.md in one pass on 2026-10-09 (DIG-3 to DIG-50); keys recorded in plan.md; Jira is now source of truth for status. Residual: sprints must be created manually by the owner | pm | E1-T5 | Mitigated |
 | R12 | Accidental deployment or third-party account creation without approval | Low | High | Explicit approval gate (E7-T3, E7-T4); agent rules forbid it | orchestrator | E7-T4 | Open |
 | R13 | Decision log records the workspace as `/mnt/project-files/digitizwork-site`, but the actual workspace is `C:\Users\prasa\Documents\digitizwork-site\digitizwork-site` | Certain | Low | Correct the decision log entry (orchestrator owns that file) | orchestrator | E5-T4 | Open |
 
@@ -36,7 +36,7 @@ Carried over from decision-log.md (2026-10-09), plus decisions taken in planning
 | D5 | 2026-10-09 | Run locally with Docker (dev with hot reload on :3000, production image on :8080) | Adopted (owner request) | Consistent local environment; same image can be deployed later | decision-log.md |
 | D6 | 2026-10-09 | TypeScript 5.9.3 instead of 7.x | Adopted | TypeScript 7 is a new rewrite; Next.js compatibility not yet confirmed | decision-log.md |
 | D7 | 2026-10-09 | No hosting or deployment without owner approval | Adopted (owner instruction) | Owner control of cost and exposure | Owner, 2026-10-09 |
-| D8 | 2026-10-09 | Backlog planned in docs/project/plan.md; Jira issues created only after the owner supplies the new project key | Adopted | Owner is creating a new Jira project | Owner, 2026-10-09 |
+| D8 | 2026-10-09 | Backlog planned in docs/project/plan.md; Jira issues created only after the owner supplies the new project key (key DIG supplied; backlog created 2026-10-09) | Adopted, done | Owner is creating a new Jira project | Owner, 2026-10-09 |
 | D9 | 2026-10-09 | Three sprints for Phase 1 (definition, build, verification and launch readiness); Phase 2 in backlog | Proposed (PM) | Matches dependency order; sprint length to be set by owner | PM plan |
 
 ## Pending owner decisions

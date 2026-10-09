@@ -51,7 +51,7 @@ Business objectives (target audience, primary conversion, markets) cannot be sta
 - No invented business facts; assumptions are marked `[ASSUMPTION]` and must be confirmed before launch.
 - Agents edit only their owned paths (see `.claude/agents/`). Shared files with no single owner (`package.json`, `next.config.ts`, `docker-compose.yml`, `Dockerfile`) are changed via the orchestrator.
 - Workspace is not a git repository yet, and no GitHub repository exists (OQ-6).
-- Jira: backlog is planned but not created; waiting for the owner's new Jira project key.
+- Jira: backlog created in project DIG on 2026-10-09; Jira is the status source of truth.
 
 ## 5. Success criteria (Phase 1 launch-ready)
 
@@ -89,5 +89,5 @@ Discovery questions from [phase-1-kickoff.md](phase-1-kickoff.md) section 4 are 
 | OQ-4 | Email delivery for launch: managed provider (e.g. Resend), your existing mailbox via SMTP, or console-only until hosting is decided? | E4-S3 | Console adapter only; real provider after approval |
 | OQ-5 | Which sections to include on the single page (e.g. is a "How we work" section wanted)? | E2-S2 | Marketing proposes; owner approves |
 | OQ-6 | Should a GitHub repository be created, and under which account? Needed for version control and CI | E5-T4 | Local git init only, no remote |
-| OQ-7 | Jira project key | E1-T5 | n/a |
+| OQ-7 | Jira project key | E1-T5 | Resolved 2026-10-09: DIG |
 | OQ-8 | Is "launch" for Phase 1 a local production build only, or do you intend to deploy publicly after QA? | E7-T3, E7-T4 | Local production build only |
